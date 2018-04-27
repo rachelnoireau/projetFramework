@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fuzzy">
+      <UniqueIdentifier>{60f67bbd-3166-4aa9-81c2-36658bfe5343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{f0370f79-ba65-4b05-a2bd-844e84ffcfcd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryExpression.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Expression.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="UnaryExpression.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="And.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AndMin.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AndMult.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MamdaniDefuzz.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CogDefuzz.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Or.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="OrMax.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="OrPlus.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Then.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ThenMin.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ThenMult.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Agg.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AggMax.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AggPlus.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Not.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="NotMinus1.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Is.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IsTriangle.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ValueModel.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IsTrapeze.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryShadowExpression.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="UnaryExpressionModel.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryExpressionModel.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Evaluator.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Framework flou.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
