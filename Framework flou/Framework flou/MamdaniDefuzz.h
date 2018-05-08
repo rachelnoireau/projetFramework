@@ -9,6 +9,7 @@ namespace Core {
 	template <class T>
 	class MamdaniDefuzz : public BinaryExpression<T> {
 	public:
+		
 		virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
 		typedef pair<vector<T>, vector<T> > Shape;
 
