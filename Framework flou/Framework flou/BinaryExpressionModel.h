@@ -6,7 +6,7 @@
 
 namespace Core {
 	template <class T>
-	class BinaryExpressionModel {
+	class BinaryExpressionModel :: {
 	private:
 		BinaryExpression<T> *op;
 		Expression<T> *left, *right;
