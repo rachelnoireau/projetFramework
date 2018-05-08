@@ -1,22 +1,32 @@
 #pragma once
 #ifndef BINARYSHADOWEXPRESSION_H
 #define BINARYSHADOWEXPRESSION_H
-//#include "Not.h"
-
+#include "BinaryExpression.h"
+#include "Expression.h"
 
 namespace Core {
 	template <class T>
-	class BinaryShadowExpression :: BinaryExpression {
+	class BinaryShadowExpression : public BinaryExpression<T> {
 	
 	public:
 		virtual T evaluate(Core::Expression<T>*,Core::Expression<T>*) const;
+		virtual T getTarget() const;
+	private:
+		BinaryExpression<T> *target;
 	};
+
+
+	template <class T>
+	T BinaryShadowExpression<T>::getTarget() const {
+		return target;
+	}
 
 	template <class T>
 	T BinaryShadowExpression<T>::evaluate(Core::Expression<T>* l, Core::Expression<T>* r) const {
-		T lev = l->evaluate();
-		T rev = r->evaluate();
-		return (lev < rev) ? lev : rev;
+		if (target == NULL) throw NullOperatorException{
+			return operator.evaluate(l,r);
+		}
+
 	}
 }
 

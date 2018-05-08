@@ -17,8 +17,7 @@ namespace Core {
 
 	private:
 		BinaryExpression<T> *op;
-		Expression<T> *left, *right;
-		
+		Expression<T> *left, *right;	
 	};
 
 	template <class T>
