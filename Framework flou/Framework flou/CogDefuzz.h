@@ -7,8 +7,15 @@ namespace Core {
 	template <class T>
 	class CogDefuzz : public MamdaniDefuzz<T> {
 	public:
-		virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
+		virtual T evaluate(Expression<T>*, Expression<T>*);
 	};
+
+
+	template<class T>
+	T CogDefuzz<T>::evaluate(Expression<T>*l, Expression<T>*r) {
+		T left = l->evaluate();
+		T right = r->evaluate();
+	}
 
 
 }
