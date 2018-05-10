@@ -7,7 +7,7 @@
 
 namespace Core {
 	template <class T>
-	class UnaryExpressionModel : public UnaryExpression<T> { 
+	class UnaryExpressionModel : public UnaryExpression<T>, public Expression<T>{ 
 	public:
 		T evaluate() const;
 		T evaluate(Expression<T>*)const;

@@ -1,6 +1,7 @@
 #ifndef ISTRIANGLE_H
 #define ISTRIANGLE_H
 #include "Is.h"
+
 namespace Fuzzy {
 	template <class T>
 	class IsTriangle : public Is<T> {
