@@ -11,10 +11,16 @@ namespace Core {
 	public:
 		virtual T evaluate(Core::Expression<T>*,Core::Expression<T>*) const;
 		virtual T getTarget() const;
+		virtual void setTarget(BinaryExpression<T>*)
+	
 	private:
-		BinaryExpression<T> *target;
+		BinaryExpression<T>* target;
 	};
 
+	template<class T>
+	void BinaryShadowExpression<T>::setTarget(BinaryExpression<T>* e) {
+		target = e;
+	}
 
 	template <class T>
 	T BinaryShadowExpression<T>::getTarget() const {
