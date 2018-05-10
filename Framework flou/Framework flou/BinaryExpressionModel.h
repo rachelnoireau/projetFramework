@@ -9,6 +9,7 @@ namespace Core {
 	class BinaryExpressionModel : public BinaryExpression<T>, Expression<T> {
 	
 	public:
+		BinaryExpressionModel(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r);
 		virtual T evaluate() const;
 		virtual T evaluate(Expression<T>*, Expression<T>*) const;
 		virtual T getLeft() const;
@@ -19,6 +20,10 @@ namespace Core {
 		BinaryExpression<T> *op;
 		Expression<T> *left, *right;	
 	};
+
+	template<class T>
+	BinaryExpressionModel<T>::BinaryExpressionModel(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r):
+		op(ope), left(l), right(r){}
 
 	template <class T>
 	T BinaryExpressionModel<T>::getLeft() const {

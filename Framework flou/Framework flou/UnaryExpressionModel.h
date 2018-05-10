@@ -9,6 +9,7 @@ namespace Core {
 	template <class T>
 	class UnaryExpressionModel : public UnaryExpression<T>, public Expression<T>{ 
 	public:
+		UnaryExpressionModel(UnaryExpression<T>* ope, Expression<T>* o);
 		T evaluate() const;
 		T evaluate(Expression<T>*)const;
 		Expression<T> getOperand() const;
@@ -19,6 +20,10 @@ namespace Core {
 			Expression<T> operand;
 			UnaryExpression<T> operator;
 	};
+
+	template<class T>
+	UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* ope, Expression<T>* o): operand(ope), operator(o){
+	}
 
 	template<class T>
 	Expression<T> UnaryExpressionModel<T>::getOperand()const {
