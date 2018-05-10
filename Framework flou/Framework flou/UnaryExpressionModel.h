@@ -2,10 +2,12 @@
 #pragma once
 #ifndef UNARYEXPRESSIONMODEL_H
 #define UNARYEXPRESSIONMODEL_H
+#include "UnaryExpression.h"
+#include "Expression.h"
 
 namespace Core {
 	template <class T>
-	class UnaryExpressionModel : UnaryExpression<T> {
+	class UnaryExpressionModel : public UnaryExpression<T> { 
 	public:
 		T evaluate() const;
 		T evaluate(Expression<T>*)const;

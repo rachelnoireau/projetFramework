@@ -12,8 +12,11 @@ namespace Core {
 		
 		virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
 		typedef pair<vector<T>, vector<T> > Shape;
+		virtual Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) const=0;
 
-		typename Shape MandaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f)
+	};	
+	/*
+	Shape MandaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f)
 		{
 			vector<T> x, y;
 			for (T i = min; i <= max; i += step)
@@ -23,9 +26,7 @@ namespace Core {
 			}
 			return Shape(x, y);
 		}
-	};
-
-	
+	*/
 
 
 }
