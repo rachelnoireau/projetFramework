@@ -46,9 +46,11 @@ namespace Core {
 		T right = r->evaluate();
 		T exit = 0;
 		for (int i=0;i<left.first.size;i++){
-			exit += (left.first[i] + left.second[i]) / left.sencond[i];
+			exit += (left.first[i] + left.second[i]) / left.sencond[i];//dans defuzz
 		}
 		r = exit; /////////////////////////////////////////////////////////////////////////
+
+		defuzz(BuildShape(l,r)
 		return exit;
 	}
 
