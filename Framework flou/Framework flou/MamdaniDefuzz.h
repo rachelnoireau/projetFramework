@@ -9,15 +9,35 @@ namespace Core {
 	template <class T>
 	class MamdaniDefuzz : public BinaryExpression<T> {
 	public:
-		
-		virtual T evaluate(Expression<T>*, Expression<T>*) const;
 		typedef pair<vector<T>, vector<T> > Shape;
-		virtual void Defuzz(Shape) const = 0;
-		virtual Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) ;
 
-	};	
-	
-	Shape MandaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) //ici
+		virtual T evaluate(Expression<T>*, Expression<T>*) const;
+		virtual T Defuzz(Shape) const = 0;
+		Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) ;
+
+		setStep(const T&);
+		T getStep();
+
+		
+	private:
+		T * step;
+		T * min;
+		T * max;
+
+	};
+	template<class T>
+	MamdaniDefuzz<T>::setStep(const T& st) {
+		step = st;
+}
+
+	template<class T>
+	T MamdaniDefuzz<T>::getStep() {
+		return step;
+	}
+
+
+	template<class T>
+	MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) //ici
 		{
 			vector<T> x, y;
 			for (T i = min; i <= max; i += step)
@@ -28,6 +48,15 @@ namespace Core {
 			return Shape(x, y);
 		}
 	
+
+
+	template<class T>
+	T MamdaniDefuzz<T>::evaluate(Expression<T>* l, Expression<T>* r) const
+	{
+		T left = l->evaluate();
+		T right = r->evaluate();
+		return defuzz(BuildShape(left, right));
+	}
 
 
 }
