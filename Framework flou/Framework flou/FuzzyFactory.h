@@ -19,7 +19,8 @@ namespace Fuzzy {
 	class FuzzyFactory : public Core::ExpressionFactory<T> {
 
 	public:
-		FuzzyFactory<T>::FuzzyFactory(UnaryShadowExpression<T>* not, BinaryShadowExpression<T>* and, BinaryShadowExpression<T>* or , BinaryShadowExpression<T>* then, BinaryShadowExpression<T> defuzz);
+		FuzzyFactory(UnaryShadowExpression<T>* notInit, Core::BinaryShadowExpression<T>* andInit, BinaryShadowExpression<T>* orInit, BinaryShadowExpression<T>* thenInit, BinaryShadowExpression<T> defuzzInit);
+		//FuzzyFactory(Not<T>* notInit, And<T>* andInit, Or<T>* orInit, Then<T>* thenInit, MamdaniDefuzz<T> defuzzInit);
 
 		Core::Expression<T> newAnd(Core::Expression<T>* r, Core::Expression<T>* l);
 		Core::Expression<T> newOr(Core::Expression<T>* r, Core::Expression<T>* l);
@@ -28,7 +29,7 @@ namespace Fuzzy {
 		Core::Expression<T> newDefuzz(Core::Expression<T>* r, Core::Expression<T>* l);
 		Core::Expression<T> newNot(Core::Expression<T>* o);
 		Core::Expression<T> newIs(Core::Expression<T>* r, Core::Expression<T>* l);///////?
-
+		
 		void changeAnd(And<T>* o);
 		void changeOr(Or<T>* o);
 		void changeThen(Then<T>* o);
@@ -41,13 +42,19 @@ namespace Fuzzy {
 		Core::BinaryShadowExpression<T> and, or, then, agg, defuzz;
 		Core::UnaryShadowExpression<T> not, is;
 	};
-
+	
 	template<class T>
-	FuzzyFactory<T>::FuzzyFactory(UnaryShadowExpression<T> * not, BinaryShadowExpression<T>* and, BinaryShadowExpression<T>* or , BinaryShadowExpression<T>* then, BinaryShadowExpression<T> defuzz):
-	and(and), or(or), then(then), not(not), defuzz(defuzz)
-	{
-		
+	FuzzyFactory<T>::FuzzyFactory(UnaryShadowExpression<T>* notInit, BinaryShadowExpression<T>* andInit, BinaryShadowExpression<T>* orInit, BinaryShadowExpression<T>* thenInit, BinaryShadowExpression<T> defuzzInit):
+	and(andInit), or(orInit), then(thenInit), not(notInit), defuzz(defuzzInit)
+	{	
 	}
+
+	/*
+	template<class T>
+	inline FuzzyFactory<T>::FuzzyFactory(Not<T>* not, And<T>* and, Or<T>* or , Then<T>* then, MamdaniDefuzz<T> defuzz):
+		and (and), or (or ), then(then), not(not), defuzz(defuzz)
+	{
+	}*/
 
 	template<class T>
 	Core::Expression<T> FuzzyFactory<T>::newAnd(Core::Expression<T>* r, Core::Expression<T>* l) {

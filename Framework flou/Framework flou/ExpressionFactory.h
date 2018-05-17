@@ -10,6 +10,7 @@ namespace Core {
 	class ExpressionFactory {
 
 	public:
+
 		Expression<T> Hold(Expression<T>*);
 		Expression<T> newUnary(UnaryExpression<T>* ope, Expression<T>* o);
 		Expression<T> newBinary(BinaryExpression<T>* ope, Expression<T>* l,Expression<T>* r);
@@ -33,5 +34,7 @@ namespace Core {
 	Expression<T> ExpressionFactory<T>::newBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r) {
 		return new BinaryExpressionModel(ope, l, r);
 	}
+
+
 }
 #endif
