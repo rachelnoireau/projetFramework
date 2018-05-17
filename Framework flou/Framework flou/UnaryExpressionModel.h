@@ -38,21 +38,20 @@ namespace Core {
 	}
 
 	template<class T>
-	void UnaryExpressionModel<T>::setOperand(Expression<T>* e) {
-		operand = e;
+	void UnaryExpressionModel<T>::setOperand(Expression<T>* op) {
+		operand = op;
 	}
 
 	template<class T>
-	void UnaryExpressionModel<T>::setOperator(UnaryExpression<T>* e) {
-		operatorVar = e;
+	void UnaryExpressionModel<T>::setOperator(UnaryExpression<T>* op) {
+		operatorVar = op;
 	}
 
 	
 
 	template<class T>
 	T UnaryExpressionModel<T>::evaluate() const {
-		if (operand == NULL) throw NullOperatorException {
-
+		if (operand == NULL) throw NullPointerException {
 			return evaluate(operand);
 		}
 	}
@@ -60,7 +59,6 @@ namespace Core {
 	template<class T>
 	T UnaryExpressionModel<T>::evaluate(Expression<T>* o) const{
 		if (operand == NULL) throw NullOperatorException{
-
 			return operatorVar.evaluate(o);
 		}
 	}

@@ -20,19 +20,26 @@ namespace Core {
 	template <class T>
 	void UnaryShadowExpression<T>::setTarget(UnaryExpression<T>* e){
 		target=e;
+	}		
+	
+	template<class T>
+	UnaryExpression<T>* UnaryShadowExpression<T>::getTarget() const
+	{
+			return target;
 	}
 
+/*
 	template <class T>
 	UnaryExpression<T>* UnaryShadowExpression<T>::getTarget() const {
 		return target;
-	}
+	}*/
 
 	template <class T>
 	T UnaryShadowExpression<T>::evaluate(Core::Expression<T>* o) const {
 		if (target == NULL) throw NullOperatorException{
 			return target.evaluate(o);
 		}
-
+	
 	}
 
 
