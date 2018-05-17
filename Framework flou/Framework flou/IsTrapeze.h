@@ -20,7 +20,7 @@ namespace Fuzzy {
 		virtual T evaluate(Expression<T>*) const;
 
 	private:
-		 T min, mid1, mid2, max; /////peutetre change nom
+		 T min, mid1, mid2, max; /////peut etre change nom
 
 	};
 

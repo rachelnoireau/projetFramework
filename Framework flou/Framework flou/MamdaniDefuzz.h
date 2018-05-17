@@ -11,12 +11,19 @@ namespace Core {
 	public:
 		typedef pair<vector<T>, vector<T> > Shape;
 
+		class EvalFunc
+		{
+		public:
+			virtual T operator () (const T&) = 0;
+		};
+
+
 		virtual T evaluate(Expression<T>*, Expression<T>*) const;
 		virtual T Defuzz(Shape) const = 0;
 		Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) ;
 
-		setStep(const T&);
-		T getStep();
+		void setStep(const T&);
+		T getStep() const;
 
 		
 	private:
@@ -26,27 +33,27 @@ namespace Core {
 
 	};
 	template<class T>
-	MamdaniDefuzz<T>::setStep(const T& st) {
+	void MamdaniDefuzz<T>::setStep(const T& st) {
 		step = st;
-}
+	}
 
 	template<class T>
-	T MamdaniDefuzz<T>::getStep() {
+	T MamdaniDefuzz<T>::getStep() const {
 		return step;
 	}
 
 
 	template<class T>
-	MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) //ici
+	MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f){ //ici
+	
+		vector<T> x, y;
+		for (T i = min; i <= max; i += step)
 		{
-			vector<T> x, y;
-			for (T i = min; i <= max; i += step)
-			{
-				y.push_back(f(i));
-				x.push_back(i);
-			}
-			return Shape(x, y);
+			y.push_back(f(i));
+			x.push_back(i);
 		}
+		return Shape(x, y);
+	}
 	
 
 

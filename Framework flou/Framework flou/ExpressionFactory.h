@@ -11,14 +11,15 @@ namespace Core {
 
 	public:
 
-		Expression<T> Hold(Expression<T>*);
-		Expression<T> newUnary(UnaryExpression<T>* ope, Expression<T>* o);
-		Expression<T> newBinary(BinaryExpression<T>* ope, Expression<T>* l,Expression<T>* r);
+		virtual Expression<T>* Hold(Expression<T>*)=0;
+		virtual Expression<T>* newUnary(UnaryExpression<T>* ope, Expression<T>* o)=0;
+		virtual Expression<T>* newBinary(BinaryExpression<T>* ope, Expression<T>* l,Expression<T>* r)=0;
 	
 	private:
-		Expression<T> memory;
+		Expression<T>* memory;
 	};
 
+	/*
 	template<class T>
 	Expression<T>  ExpressionFactory<T>::Hold(Expression<T>* e) {
 		return e;///////////////////////////////////////////////////////////////////
@@ -34,7 +35,7 @@ namespace Core {
 	Expression<T> ExpressionFactory<T>::newBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r) {
 		return new BinaryExpressionModel(ope, l, r);
 	}
-
+	*/
 
 }
 #endif

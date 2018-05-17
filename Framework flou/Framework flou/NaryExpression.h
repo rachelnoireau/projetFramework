@@ -8,6 +8,7 @@ namespace core
 	class NaryExpression
 	{
 	public:
+
 		NaryExpression() {};
 		virtual ~NaryExpression() {};
 

@@ -11,7 +11,8 @@ namespace Core {
 	public:
 		virtual T evaluate(Core::Expression<T>*) const;
 		virtual T getTarget() const;
-		virtual void setTarget(UnaryShadowExpression<T>*)
+		virtual void setTarget(UnaryShadowExpression<T>*);
+
 	private:
 		UnaryExpression<T> *target;
 	};

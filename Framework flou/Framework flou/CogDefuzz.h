@@ -11,8 +11,8 @@ namespace Core {
 		T Defuzz(Shape) const;
 		//T evaluate(Expression<T>*, Expression<T>*) const;
 		//Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) const;
-		setStep(const T&);
-		T getStep();
+		//setStep(const T&);
+		//T getStep();
 
 	private:
 		T * step;
@@ -20,15 +20,17 @@ namespace Core {
 		T * max;
 
 	};
+	/*
 	template<class T>
 	CogDefuzz<T>::setStep(const T& st) {
 		step = st;
-	}
+	}*/
 
+	/*
 	template<class T>
 	T CogDefuzz<T>::getStep() {
 		return step;
-	}
+	}*/
 
 	template<class T>
 	T CogDefuzz<T>::Defuzz(Shape shape) const
