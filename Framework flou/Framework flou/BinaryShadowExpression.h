@@ -10,7 +10,7 @@ namespace Core {
 	
 	public:
 		virtual T evaluate(Core::Expression<T>*,Core::Expression<T>*) const;
-		virtual T getTarget() const;
+		virtual BinaryExpression<T>* getTarget() const;
 		virtual void setTarget(BinaryExpression<T>*);
 	
 	private:
@@ -23,16 +23,16 @@ namespace Core {
 	}
 
 	template <class T>
-	T BinaryShadowExpression<T>::getTarget() const {
+	BinaryExpression<T>* BinaryShadowExpression<T>::getTarget() const {
 		return target;
 	}
 
 	template <class T>
 	T BinaryShadowExpression<T>::evaluate(Core::Expression<T>* l, Core::Expression<T>* r) const {
 		if (target == NULL) throw NullOperatorException{
-			return operator.evaluate(l,r);
+			return TargetExpressionException ;
 		}
-
+		return target.evaluate(l,r);
 	}
 }
 

@@ -6,6 +6,7 @@
 #include "UnaryShadowExpression.h"
 #include "BinaryShadowExpression.h"
 #include "ExpressionFactory.h"
+#include "UnaryExpressionModel.h"
 #include "Then.h"
 #include "Agg.h"
 #include "CogDefuzz.h"
@@ -56,15 +57,20 @@ namespace Fuzzy {
 	/*
 	template<class T>
 	FuzzyFactory<T>::FuzzyFactory(UnaryShadowExpression<T>* _not, BinaryShadowExpression<T>* _and, BinaryShadowExpression<T>* _or, BinaryShadowExpression<T>* _then, BinaryShadowExpression<T>* _defuzz) :
-	and(_and), or(_or), then(_then), not(_not), defuzz(_defuzz)
+	andvar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{	
 	}
 	*/
 	
 	template<class T>
-	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz):
-	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
+	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz)//:
+	//andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{
+		changeAnd(_and);
+		changeOr(_or);
+		changeThen(_then);
+		changeNot(_not);
+		changeDefuzz(_defuzz);
 	}
 
 	template<class T>
@@ -75,12 +81,12 @@ namespace Fuzzy {
 
 	template <class T>
 	Expression<T>* FuzzyFactory<T>::newUnary(UnaryExpression<T>* ope, Expression<T>* o) {
-		return new UnaryExpressionModel(ope, o);
+		return new UnaryExpressionModel<T>::UnaryExpressionModel(ope, o);
 	}
 
 	template <class T>
 	Expression<T>* FuzzyFactory<T>::newBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r) {
-		return new BinaryExpressionModel(ope, l, r);
+		return new BinaryExpressionModel<T>::BinaryExpressionModel(ope, l, r);
 	}
 
 

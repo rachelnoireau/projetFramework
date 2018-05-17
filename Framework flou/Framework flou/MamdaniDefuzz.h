@@ -42,10 +42,8 @@ namespace Core {
 		return step;
 	}
 
-
 	template<class T>
-	MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f){ //ici
-	
+	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f){ //ici	
 		vector<T> x, y;
 		for (T i = min; i <= max; i += step)
 		{
@@ -55,16 +53,14 @@ namespace Core {
 		return Shape(x, y);
 	}
 	
-
-
+	/*
 	template<class T>
 	T MamdaniDefuzz<T>::evaluate(Expression<T>* l, Expression<T>* r) const
 	{
 		T left = l->evaluate();
 		T right = r->evaluate();
-		return defuzz(BuildShape(left, right));
-	}
-
+		return defuzz(BuildShape(left, right,step));
+	}*/
 
 }
 #endif
