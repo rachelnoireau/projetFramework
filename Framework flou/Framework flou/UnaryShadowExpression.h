@@ -36,9 +36,9 @@ namespace Core {
 
 	template <class T>
 	T UnaryShadowExpression<T>::evaluate(Core::Expression<T>* o) const {
-		if (target == NULL) throw NullOperatorException{
-			return target.evaluate(o);
-		}
+		//if (target == NULL) throw NullOperatorException{
+		//	return target.evaluate(o);
+		//}
 	
 	}
 

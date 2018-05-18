@@ -1,4 +1,3 @@
-#pragma once
 #ifndef BINARYEXPRESSIONMODEL_H
 #define BINARYEXPRESSIONMODEL_H
 #include "Expression.h"

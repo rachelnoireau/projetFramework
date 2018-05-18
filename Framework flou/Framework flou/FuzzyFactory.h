@@ -7,6 +7,7 @@
 #include "BinaryShadowExpression.h"
 #include "ExpressionFactory.h"
 #include "UnaryExpressionModel.h"
+#include "BinaryExpressionModel.h"
 #include "Then.h"
 #include "Agg.h"
 #include "CogDefuzz.h"
@@ -14,6 +15,8 @@
 #include "Is.h"
 #include "And.h"
 #include "Or.h"
+
+#include <set>
 
 namespace Fuzzy {
 	template <class T>
@@ -53,6 +56,8 @@ namespace Fuzzy {
 		Core::BinaryShadowExpression<T> defuzz;
 		Core::UnaryShadowExpression<T> notVar;
 		Core::UnaryShadowExpression<T> is;
+
+		std::set<Core::Expression<T>*> memory;
 	};
 	/*
 	template<class T>
@@ -75,18 +80,19 @@ namespace Fuzzy {
 
 	template<class T>
 	Expression<T>*  FuzzyFactory<T>::Hold(Expression<T>* e) {
-		return e;///////////////////////////////////////////////////////////////////
+		memory.insert(e);
+		return e;
 	}
 
 
 	template <class T>
 	Expression<T>* FuzzyFactory<T>::newUnary(UnaryExpression<T>* ope, Expression<T>* o) {
-		return new UnaryExpressionModel<T>::UnaryExpressionModel(ope, o);
+		return Hold(new UnaryExpressionModel<T>(ope, o));
 	}
 
 	template <class T>
 	Expression<T>* FuzzyFactory<T>::newBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r) {
-		return new BinaryExpressionModel<T>::BinaryExpressionModel(ope, l, r);
+		return Hold(new BinaryExpressionModel<T>(ope, l, r));
 	}
 
 
