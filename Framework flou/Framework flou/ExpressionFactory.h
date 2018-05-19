@@ -10,7 +10,7 @@ namespace Core {
 	class ExpressionFactory {
 
 	public:
-
+		~ExpressionFactory();
 		virtual Expression<T>* Hold(Expression<T>*)=0;
 		virtual Expression<T>* newUnary(UnaryExpression<T>* ope, Expression<T>* o)=0;
 		virtual Expression<T>* newBinary(BinaryExpression<T>* ope, Expression<T>* l,Expression<T>* r)=0;
@@ -18,6 +18,11 @@ namespace Core {
 	private:
 		Expression<T>* memory;
 	};
+
+	template<class T>
+	ExpressionFactory<T>::~ExpressionFactory() {
+		delete memory;/////////////////////////////////////////////////////////////////////
+	}
 
 	/*
 	template<class T>
