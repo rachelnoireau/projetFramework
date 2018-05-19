@@ -5,7 +5,7 @@
 
 namespace Core {
 	template <class T>
-	class BinaryExpressionModel : public BinaryExpression<T>, Expression<T> {
+	class BinaryExpressionModel : public BinaryExpression<T>, public Expression<T> {
 	
 	public:
 		BinaryExpressionModel(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r);
