@@ -9,6 +9,7 @@ namespace Core {
 	
 	public:
 		BinaryExpressionModel(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r);
+		~BinaryExpressionModel();
 		virtual T evaluate() const;
 		virtual T evaluate(Expression<T>*, Expression<T>*) const;
 		virtual Expression<T>* getLeft() const;
@@ -23,6 +24,13 @@ namespace Core {
 	template<class T>
 	BinaryExpressionModel<T>::BinaryExpressionModel(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r):
 		op(ope), left(l), right(r){}
+
+	template<class T>
+	BinaryExpressionModel<T>::~BinaryExpressionModel() {
+		delete op;
+		delete left;
+		delete right;
+	}
 
 	template <class T>
 	Expression<T>* BinaryExpressionModel<T>::getLeft() const {
@@ -41,18 +49,16 @@ namespace Core {
 
 	template <class T>
 	T BinaryExpressionModel<T>::evaluate() const {
-		if (left == NULL) throw NullOperatorException
-			return LeftExpressionException;
-		if (right == NULL) throw NullOperatorException
-			return RightExpressionException;
+		if (left == NULL) throw nullptr;
+		if (right == NULL) throw nullptr;
 		return evaluate(left, right);
 	}
 
 	template <class T>
 	T BinaryExpressionModel<T>::evaluate(Expression<T>* r,Expression<T>* l) const {
-		if (op == NULL)throw NullOperatorException{
-			return op.evaluate(l,r);
-		}
+		if (op == NULL)throw nullptr;
+		return op->evaluate(l,r);
+		
 	}
 }
 

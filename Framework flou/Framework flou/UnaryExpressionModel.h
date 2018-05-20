@@ -24,8 +24,9 @@ namespace Core {
 
 
 	template<class T>
-	UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* ope, Expression<T>* o) : operand(ope), operatorVar(o)
+	UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* ope, Expression<T>* o) : operand(o), operatorVar(ope)
 	{
+
 	}
 
 	template<class T>
@@ -51,16 +52,16 @@ namespace Core {
 
 	template<class T>
 	T UnaryExpressionModel<T>::evaluate() const {
-		if (operand == NULL) throw NullPointerException {
-			return evaluate(operand);
-		}
+		if (operand == NULL) throw nullptr;
+		return evaluate(operand);
+		
 	}
 
 	template<class T>
 	T UnaryExpressionModel<T>::evaluate(Expression<T>* o) const{
-		if (operand == NULL) throw NullOperatorException{
-			return operatorVar.evaluate(o);
-		}
+		if (operand == NULL) throw nullptr;
+		return operatorVar->evaluate(o);
+		
 	}
 
 }

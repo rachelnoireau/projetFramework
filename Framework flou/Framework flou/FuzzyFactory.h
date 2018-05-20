@@ -132,12 +132,12 @@ namespace Fuzzy {
 
 	template<class T>
 	void FuzzyFactory<T>::changeAnd(And<T>* o) {
-		andVar.setTarget(o);
+		this->andVar->setTarget(o);
 	}
 
 	template<class T>
 	void FuzzyFactory<T>::changeOr(Or<T>* o) {
-		orVar.setTarget(o);
+		orVar->setTarget(o);
 	}
 
 	template<class T>

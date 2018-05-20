@@ -44,9 +44,9 @@ namespace Core {
 	template<class T>
 	T CogDefuzz<T>::evaluate(Expression<T>* l, Expression<T>* r) const
 	{
-		T left = l->evaluate();
-		T right = r->evaluate();
-		return Defuzz(MamdaniDefuzz<T>::BuildShape(left, right));
+		//T left = l->evaluate();
+		//T right = r->evaluate();
+		return Defuzz(MamdaniDefuzz<T>::BuildShape(l, r));
 	}
 	 
 /*

@@ -43,7 +43,7 @@ namespace Core {
 	template <class T>
 	T UnaryShadowExpression<T>::evaluate(Core::Expression<T>* o) const {
 		if (target == NULL) throw nullptr; //nullPointer
-		return target->UnaryExpression<T>::evaluate(o);
+		return target->evaluate(o);//UnaryExpression<T>::
 	
 	}
 
