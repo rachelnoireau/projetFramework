@@ -14,10 +14,10 @@ namespace Core {
 		//setStep(const T&);
 		//T getStep();
 
-	private:
+	/*private:
 		T * step;
 		T * min;
-		T * max;
+		T * max;*/
 	};
 	/*
 	template<class T>
@@ -46,7 +46,7 @@ namespace Core {
 	{
 		T left = l->evaluate();
 		T right = r->evaluate();
-		return Defuzz(MamdaniDefuzz<T>::BuildShape(left, right, step));
+		return Defuzz(MamdaniDefuzz<T>::BuildShape(left, right));
 	}
 	 
 /*

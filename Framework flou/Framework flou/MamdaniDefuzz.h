@@ -18,12 +18,16 @@ namespace Core {
 		};
 
 
-		virtual T evaluate(Expression<T>*, Expression<T>*) const;
+		virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
 		virtual T Defuzz(Shape) const = 0;
-		Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) ;
+		Shape BuildShape(Expression<T>*, Expression<T>*) ; //EvalFunc& f
 
 		void setStep(const T&);
 		T getStep() const;
+		void setMin(const T&);
+		T getMin() const;
+		void setMax(const T&);
+		T getMax() const;
 
 		
 	private:
@@ -43,7 +47,27 @@ namespace Core {
 	}
 
 	template<class T>
-	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f){ //ici	
+	void MamdaniDefuzz<T>::setMin(const T& mini) {
+		min = mini;
+	}
+
+	template<class T>
+	T MamdaniDefuzz<T>::getMin() const {
+		return min;
+	}
+
+	template<class T>
+	void MamdaniDefuzz<T>::setMax(const T& maxi) {
+		max = maxi;
+	}
+
+	template<class T>
+	T MamdaniDefuzz<T>::getMax() const {
+		return max;
+	}
+
+	template<class T>
+	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(Expression<T>* shapeEval, Expression<T>* e){ //ici	EvalFunc& f
 		vector<T> x, y;
 		for (T i = min; i <= max; i += step)
 		{

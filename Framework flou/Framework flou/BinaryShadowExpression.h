@@ -2,7 +2,7 @@
 #ifndef BINARYSHADOWEXPRESSION_H
 #define BINARYSHADOWEXPRESSION_H
 #include "BinaryExpression.h"
-#include "Expression.h"
+
 
 namespace Core {
 	template <class T>
@@ -29,8 +29,8 @@ namespace Core {
 
 	template <class T>
 	T BinaryShadowExpression<T>::evaluate(Core::Expression<T>* l, Core::Expression<T>* r) const {
-/*		if (target == NULL) throw NullOperatorException();
-		return target.evaluate(l,r)*/;
+		if (target == NULL) throw nullptr;
+		return target->evaluate(l,r);
 	}
 }
 
