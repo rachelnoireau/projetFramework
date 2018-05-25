@@ -50,12 +50,12 @@ namespace Fuzzy {
 	private:
 		//Core::BinaryShadowExpression<T>and, or , then, agg, defuzz;
 		//Core::UnaryShadowExpression<T> not, is;
-		Core::BinaryShadowExpression<T>* andVar;
-		Core::BinaryShadowExpression<T>* orVar;
-		Core::BinaryShadowExpression<T>* then;
-		Core::BinaryShadowExpression<T>* agg;
-		Core::BinaryShadowExpression<T>* defuzz;
-		Core::UnaryShadowExpression<T>* notVar;
+		Core::BinaryShadowExpression<T> andVar;
+		Core::BinaryShadowExpression<T> orVar;
+		Core::BinaryShadowExpression<T> then;
+		Core::BinaryShadowExpression<T> agg;
+		Core::BinaryShadowExpression<T> defuzz;
+		Core::UnaryShadowExpression<T> notVar;
 		//Core::UnaryShadowExpression<T>* is;
 
 		std::set<Core::Expression<T>*> memory;
@@ -81,11 +81,11 @@ namespace Fuzzy {
 
 	template<class T>
 	FuzzyFactory<T>::~FuzzyFactory() {
-		delete andVar;
+		/*delete andVar;
 		delete orVar;
 		delete then;
 		delete notVar;
-		delete defuzz;
+		delete defuzz;*/
 
 	}
 
@@ -109,31 +109,31 @@ namespace Fuzzy {
 
 	template<class T>
 	Core::Expression<T>* FuzzyFactory<T>::NewAnd(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(andVar, l, r);
+		return NewBinary(&andVar, l, r);
 	}
 	template<class T>
 	Core::Expression<T>* FuzzyFactory<T>::NewOr(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(orVar, l, r);
+		return NewBinary(&orVar, l, r);
 	}
 
 	template<class T>
 	Core::Expression<T>* FuzzyFactory<T>::NewThen(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(then, l, r);
+		return NewBinary(&then, l, r);
 	}
 
 	template<class T>
 	Core::Expression<T>* FuzzyFactory<T>::NewAgg(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(agg, l, r);
+		return NewBinary(&agg, l, r);
 	}
 
 	template<class T>
 	Core::Expression<T>* FuzzyFactory<T>::NewDefuzz(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(defuzz, l, r);
+		return NewBinary(&defuzz, l, r);
 	}
 
 	template<class T>
 	Core::Expression<T>* FuzzyFactory<T>::NewNot(Core::Expression<T>* o) {
-		return NewUnary(notVar, o);
+		return NewUnary(&notVar, o);
 	}
 
 	template<class T>
