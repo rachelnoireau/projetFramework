@@ -13,8 +13,10 @@ namespace Core {
 
 		T evaluate() const;
 		T evaluate(Expression<T>*)const;
+
 		Expression<T>* getOperand() const;
 		UnaryExpression<T>* getOperator() const;
+
 		void setOperand(Expression<T>*);
 		void setOperator(UnaryExpression<T>*);
 	private:
@@ -26,7 +28,6 @@ namespace Core {
 	template<class T>
 	UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* ope, Expression<T>* o) : operand(o), operatorVar(ope)
 	{
-
 	}
 
 	template<class T>

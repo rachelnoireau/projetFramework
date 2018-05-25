@@ -12,8 +12,8 @@ namespace Core {
 	public:
 		~ExpressionFactory();
 		virtual Expression<T>* Hold(Expression<T>*)=0;
-		virtual Expression<T>* newUnary(UnaryExpression<T>* ope, Expression<T>* o)=0;
-		virtual Expression<T>* newBinary(BinaryExpression<T>* ope, Expression<T>* l,Expression<T>* r)=0;
+		virtual Expression<T>* NewUnary(UnaryExpression<T>* ope, Expression<T>* o)=0;
+		virtual Expression<T>* NewBinary(BinaryExpression<T>* ope, Expression<T>* l,Expression<T>* r)=0;
 	
 	private:
 		Expression<T>* memory;
