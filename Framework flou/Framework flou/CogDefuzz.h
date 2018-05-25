@@ -35,7 +35,7 @@ namespace Core {
 	T CogDefuzz<T>::Defuzz(Shape shape) const
 	{
 		T exit = 0;
-		for (int i = 0; i<shape.first.size(); i++) {
+		for (unsigned int i = 0; i<shape.first.size(); i++) {
 			exit += (shape.first[i] + shape.second[i]) / shape.second[i];//dans defuzz
 		}
 		return exit;

@@ -9,6 +9,8 @@ namespace Core {
 	class UnaryShadowExpression : public UnaryExpression<T> {
 
 	public:
+		UnaryShadowExpression(){}
+		UnaryShadowExpression(UnaryExpression<T> *);
 		~UnaryShadowExpression();
 		virtual T evaluate(Core::Expression<T>*) const;
 		virtual UnaryExpression<T>* getTarget() const;
@@ -18,6 +20,11 @@ namespace Core {
 		UnaryExpression<T> *target;// = new UnaryExpression<T>();
 
 	};
+	template <class T>
+	UnaryShadowExpression<T>::UnaryShadowExpression(UnaryExpression<T> * tar):
+		target(tar)
+	{}
+
 	template <class T>
 	UnaryShadowExpression<T>::~UnaryShadowExpression() {
 		delete target;

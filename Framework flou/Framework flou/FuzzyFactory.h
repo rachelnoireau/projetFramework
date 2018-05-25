@@ -49,8 +49,8 @@ namespace Fuzzy {
 	private:
 		//Core::BinaryShadowExpression<T>and, or , then, agg, defuzz;
 		//Core::UnaryShadowExpression<T> not, is;
-		Core::BinaryShadowExpression<T>* andVar;
-		Core::BinaryShadowExpression<T>* orVar;
+		Core::BinaryShadowExpression<T> andVar;
+		Core::BinaryShadowExpression<T> orVar;
 		Core::BinaryShadowExpression<T> then;
 		Core::BinaryShadowExpression<T> agg;
 		Core::BinaryShadowExpression<T> defuzz;
@@ -68,14 +68,14 @@ namespace Fuzzy {
 	*/
 	
 	template<class T>
-	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz)//:
-	//andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
+	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz):
+	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{
-		changeAnd(_and);
+		/*changeAnd(_and);
 		changeOr(_or);
 		changeThen(_then);
 		changeNot(_not);
-		changeDefuzz(_defuzz);
+		changeDefuzz(_defuzz);*/
 	}
 
 	template<class T>
