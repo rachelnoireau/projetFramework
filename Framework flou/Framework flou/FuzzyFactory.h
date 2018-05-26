@@ -137,6 +137,7 @@ namespace Fuzzy {
 		//defuzz.setMin(min);
 		//defuzz.setMax(max);
 		//defuzz.setStep(step);
+		NewBinary(&defuzz, l, r)
 		return NewBinary(&defuzz, l, r); //, min, max, step
 		
 	}

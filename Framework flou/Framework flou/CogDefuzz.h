@@ -7,29 +7,61 @@ namespace Core {
 	template <class T>
 	class CogDefuzz : public MamdaniDefuzz<T> {
 	public:
+		CogDefuzz(T min, T max, T step);
+
 		typedef pair<vector<T>, vector<T> > Shape;
 		T Defuzz(Shape) const;
 		T evaluate(Expression<T>*, Expression<T>*) const;
 		//Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) const;
-		//setStep(const T&);
-		//T getStep();
 
-	/*private:
-		T * step;
-		T * min;
-		T * max;*/
+		void setStep(const T&);
+		T getStep() const;
+		void setMin(const T&);
+		T getMin() const;
+		void setMax(const T&);
+		T getMax() const;
+
+	private:
+		T  step;
+		T  min;
+		T  max;
 	};
-	/*
 	template<class T>
-	CogDefuzz<T>::setStep(const T& st) {
-		step = st;
-	}*/
+	CogDefuzz<T>::CogDefuzz(T _min, T _max, T _step):
+		min(_min) , max(_max) , step(_step)
+		{}
 
-	/*
+	
 	template<class T>
-	T CogDefuzz<T>::getStep() {
+	void CogDefuzz<T>::setStep(const T& st) {
+		step = st;
+	}
+
+	template<class T>
+	T CogDefuzz<T>::getStep() const {
 		return step;
-	}*/
+	}
+
+	template<class T>
+	void CogDefuzz<T>::setMin(const T& mini) {
+		min = mini;
+	}
+
+	template<class T>
+	T CogDefuzz<T>::getMin() const {
+		return min;
+	}
+
+	template<class T>
+	void CogDefuzz<T>::setMax(const T& maxi) {
+		max = maxi;
+	}
+
+	template<class T>
+	T CogDefuzz<T>::getMax() const {
+		return max;
+	}
+
 
 	template<class T>
 	T CogDefuzz<T>::Defuzz(Shape shape) const
@@ -46,7 +78,7 @@ namespace Core {
 	{
 		//T left = l->evaluate();
 		//T right = r->evaluate();
-		return Defuzz(MamdaniDefuzz<T>::BuildShape(l, r));
+		return Defuzz(MamdaniDefuzz<T>::BuildShape(l, r, min, max, step));
 	}
 	 
 /*
