@@ -70,14 +70,15 @@ namespace Core {
 	*/
 
 	template<class T>
-	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(Expression<T>* shapeEval, Expression<T>* e, T min, T max, T step ) const {
+	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(Expression<T>* entre, Expression<T>* exit, T min, T max, T step ) const {
 		vector<T> x, y;
 		for (T i = min; i <= max; i += step)
 		{
-			y.push_back(shapeEval->evaluate());//Is<T>://i
+			//exit->setValue(&i);
+			y.push_back(entre->evaluate());//Is<T>://i
 			x.push_back(i);
 		}
-		//e = Shape(x, y);
+		//exite = Shape(x, y);
 		return Shape(x, y);
 	}
 	
