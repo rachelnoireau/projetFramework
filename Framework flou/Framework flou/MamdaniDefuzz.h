@@ -16,6 +16,8 @@ namespace Core {
 		public:
 			virtual T operator () (const T&) = 0;
 		};
+		
+		//MamdaniDefuzz(T, T, T)
 
 		virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
 		virtual T Defuzz(Shape) const = 0;
@@ -71,7 +73,7 @@ namespace Core {
 		vector<T> x, y;
 		for (T i = min; i <= max; i += step)
 		{
-			y.push_back(i);//Is<T>::evaluate(i)
+			y.push_back(shapeEval->evaluate());//Is<T>:
 			x.push_back(i);
 		}
 		return Shape(x, y);
