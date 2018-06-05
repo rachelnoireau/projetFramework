@@ -75,13 +75,10 @@ namespace Fuzzy {
 	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz):
 	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{
-<<<<<<< HEAD
+
 
 	}*/
-=======
-	
-	}
->>>>>>> 131fdac1bbdfdc6185c904bee79885bd17d801a6
+
 
 	template<class T>
 	FuzzyFactory<T>::~FuzzyFactory() {
