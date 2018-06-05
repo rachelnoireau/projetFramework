@@ -48,7 +48,8 @@ namespace Core {
 
 		if (target != NULL) //throw nullptr;
 			return target->evaluate(l, r);
-		else throw nullptr;
+		else 
+			throw nullptr;
 	}
 }
 
