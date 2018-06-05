@@ -3,6 +3,7 @@
 #define UNARYSHADOWEXPRESSION_H
 #include "UnaryExpression.h"
 #include "Expression.h"
+#include "ExceptionTargetAndOperator.h"
 
 namespace Core {
 	template <class T>
@@ -50,7 +51,7 @@ namespace Core {
 
 	template <class T>
 	T UnaryShadowExpression<T>::evaluate(Core::Expression<T>* o) const {
-		if (target == NULL) throw nullptr; //nullPointer
+		if (target == NULL) throw new ExceptionTargetAndOperator(); //nullPointer
 		return target->evaluate(o);//UnaryExpression<T>::
 	
 	}

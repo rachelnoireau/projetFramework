@@ -56,7 +56,7 @@ namespace Core {
 
 	template <class T>
 	T BinaryExpressionModel<T>::evaluate(Expression<T>* r,Expression<T>* l) const {
-		if (op == NULL) throw nullptr;
+		if (op == NULL) throw new ExceptionTargetAndOperator();
 		return op->evaluate(l,r);
 		
 	}
