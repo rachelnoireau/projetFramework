@@ -7,6 +7,7 @@ namespace Core {
 	template <class T>
 	class CogDefuzz : public MamdaniDefuzz<T> {
 	public:
+		CogDefuzz() {};
 		CogDefuzz(T min, T max, T step);
 
 		typedef pair<vector<T>, vector<T> > Shape;
