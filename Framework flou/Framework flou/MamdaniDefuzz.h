@@ -21,7 +21,7 @@ namespace Core {
 
 		virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
 		virtual T Defuzz(Shape) const = 0;
-		Shape BuildShape(Expression<T>*, Expression<T>*,T,T,T) const ; //EvalFunc& f
+		Shape BuildShape(Expression<T>*, ValueModel<T>*,T,T,T) const ; //EvalFunc& f
 
 		/*void setStep(const T&);
 		T getStep() const;
@@ -70,15 +70,19 @@ namespace Core {
 	*/
 
 	template<class T>
-	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(Expression<T>* entre, Expression<T>* exit, T min, T max, T step ) const {
+	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(Expression<T>* entre, ValueModel<T>* exit, T min, T max, T step ) const {
 		vector<T> x, y;
+
+		T memory = exit->evaluate();
+		
 		for (T i = min; i <= max; i += step)
 		{
 			//exit->setValue(&i);
 			y.push_back(entre->evaluate());//Is<T>://i
 			x.push_back(i);
 		}
-		//exite = Shape(x, y);
+		exit->ValueModel<T>::SetValue(memory);
+
 		return Shape(x, y);
 	}
 	

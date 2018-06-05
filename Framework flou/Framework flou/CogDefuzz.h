@@ -77,8 +77,8 @@ namespace Core {
 	T CogDefuzz<T>::evaluate(Expression<T>* l, Expression<T>* r) const
 	{
 		//T left = l->evaluate();
-		//T right = r->evaluate();
-		return Defuzz(MamdaniDefuzz<T>::BuildShape(l, r, min, max, step));
+		//T ri = r->evaluate();
+		return Defuzz(MamdaniDefuzz<T>::BuildShape(l, (ValueModel<T>*) r, min, max, step));
 	}
 	 
 /*
