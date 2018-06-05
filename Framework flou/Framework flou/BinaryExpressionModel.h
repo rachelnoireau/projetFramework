@@ -2,6 +2,7 @@
 #define BINARYEXPRESSIONMODEL_H
 #include "Expression.h"
 #include "BinaryExpression.h"
+#include "ExceptionEvaluate.h"
 
 namespace Core {
 	template <class T>
@@ -9,9 +10,11 @@ namespace Core {
 	
 	public:
 		BinaryExpressionModel(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r);
-		~BinaryExpressionModel();
+		~BinaryExpressionModel() = default;
+
 		virtual T evaluate() const;
 		virtual T evaluate(Expression<T>*, Expression<T>*) const;
+
 		virtual Expression<T>* getLeft() const;
 		virtual Expression<T>* getRight() const;
 		virtual BinaryExpression<T>* getOperator() const;
@@ -57,6 +60,7 @@ namespace Core {
 	template <class T>
 	T BinaryExpressionModel<T>::evaluate(Expression<T>* r,Expression<T>* l) const {
 		if (op == NULL) throw new ExceptionTargetAndOperator();
+		if (op->evaluate(l, r) == 0) throw new ExceptionEvaluate();
 		return op->evaluate(l,r);
 		
 	}
