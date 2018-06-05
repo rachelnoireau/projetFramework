@@ -27,11 +27,12 @@ namespace Fuzzy {
 
 	public:
 
+
 		//FuzzyFactory(UnaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*);
 		FuzzyFactory() {};
 		~FuzzyFactory();
 		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*);
-		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*, SugenoDefuzz<T>*, SugenoConclusion<T>*);
+		//FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*, Core::SugenoDefuzz<T>*, Core:: SugenoConclusion<T>*);
 
 
 		virtual Expression<T>* Hold(Expression<T>*);
@@ -79,9 +80,15 @@ namespace Fuzzy {
 	
 	
 	template<class T>
-	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz):
-	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
+	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, Agg<T>* _agg, MamdaniDefuzz<T>* _defuzz)//:
+	//andVar(Core::BinaryShadowExpression<T>(_and)), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{
+		andVar = new Core::BinaryShadowExpression<T>(_and);
+		orVar= new Core::BinaryShadowExpression<T>(_or);
+		then =new Core::BinaryShadowExpression<T> (_then);
+		agg=new Core::BinaryShadowExpression<T> (_agg);
+		defuzz=new Core::BinaryShadowExpression<T> (_defuzz);
+		notVar=new Core::UnaryShadowExpression<T> (_not);
 
 
 	}

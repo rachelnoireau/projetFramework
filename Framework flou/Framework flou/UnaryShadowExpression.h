@@ -3,6 +3,7 @@
 #define UNARYSHADOWEXPRESSION_H
 #include "UnaryExpression.h"
 #include "Expression.h"
+#include "ExceptionTargetAndOperator.h"
 
 namespace Core {
 	template <class T>
@@ -11,7 +12,8 @@ namespace Core {
 	public:
 		UnaryShadowExpression(){}
 		UnaryShadowExpression(UnaryExpression<T> *);
-		~UnaryShadowExpression();
+		//~UnaryShadowExpression();
+
 		virtual T evaluate(Core::Expression<T>*) const;
 		virtual UnaryExpression<T>* getTarget() const;
 		virtual void setTarget(UnaryExpression<T>*);
@@ -24,11 +26,11 @@ namespace Core {
 	UnaryShadowExpression<T>::UnaryShadowExpression(UnaryExpression<T> * tar):
 		target(tar)
 	{}
-
+	/*
 	template <class T>
 	UnaryShadowExpression<T>::~UnaryShadowExpression() {
 		delete target;
-	}
+	}*/
 
 	template <class T>
 	void UnaryShadowExpression<T>::setTarget(UnaryExpression<T>* e){
@@ -49,7 +51,7 @@ namespace Core {
 
 	template <class T>
 	T UnaryShadowExpression<T>::evaluate(Core::Expression<T>* o) const {
-		if (target == NULL) throw nullptr; //nullPointer
+		if (target == NULL) throw new ExceptionTargetAndOperator(); //nullPointer
 		return target->evaluate(o);//UnaryExpression<T>::
 	
 	}
