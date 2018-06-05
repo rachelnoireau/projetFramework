@@ -15,6 +15,9 @@
 #include "Is.h"
 #include "And.h"
 #include "Or.h"
+#include "SugenoDefuzz.h"
+#include "SugenoConclusion.h"
+
 
 #include <set>
 
@@ -23,9 +26,19 @@ namespace Fuzzy {
 	class FuzzyFactory : public Core::ExpressionFactory<T> {
 
 	public:
+<<<<<<< HEAD
 		//FuzzyFactory(UnaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*);
 		~FuzzyFactory();
 		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, MamdaniDefuzz<T>*);
+=======
+
+		//FuzzyFactory(UnaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*);
+		FuzzyFactory() {};
+		~FuzzyFactory();
+		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*);
+		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*, SugenoDefuzz<T>*, SugenoConclusion<T>*);
+
+>>>>>>> f8b5342395719fe106d6e4b5655cf8a917f0e7ca
 
 		virtual Expression<T>* Hold(Expression<T>*);
 		virtual Expression<T>* NewUnary(UnaryExpression<T>* ope, Expression<T>* o);
