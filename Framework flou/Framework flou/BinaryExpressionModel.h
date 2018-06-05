@@ -60,7 +60,7 @@ namespace Core {
 	template <class T>
 	T BinaryExpressionModel<T>::evaluate(Expression<T>* r,Expression<T>* l) const {
 		if (op == NULL) throw new ExceptionTargetAndOperator();
-		if (op->evaluate(l, r) == 0) throw new ExceptionEvaluate();
+		if (op->evaluate(l, r) == 0) throw std::exception();// new ExceptionEvaluate()
 		return op->evaluate(l,r);
 		
 	}
