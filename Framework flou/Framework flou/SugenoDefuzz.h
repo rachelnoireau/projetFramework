@@ -6,39 +6,39 @@
 #include "BinaryExpressionModel.h"
 #include "BinaryShadowExpression.h"
 
-namespace core {
+namespace Core {
 
 	template <class T>
 	class SugenoDefuzz : public NaryExpression<T> {
 
 	public:
-		SugenoDefuzz() = default;
-		virtual ~SugenoDefuzz() = default;
+		SugenoDefuzz() {};
+		~SugenoDefuzz() {};
 
-		virtual T evaluate(std::vector<Expression<T>*> * operands) const;
+		T evaluate(std::vector<Expression<T>*> *operands) const;
 
 	};
 
 	template<class T>
 	T SugenoDefuzz<T>::evaluate(std::vector<Expression<T>*> *operands) const {
-		/*typename std::vector<const Expression<T>*>::const_iterator it;
+		std::vector<const Expression<T>*>::const_iterator it;
 		T numerator = 0;
 		T denominator = 0;
 
 		for (it = operands->begin(); it != operands->end(); it++)
 		{
-			core::BinaryExpressionModel<T>*  bem = (core::BinaryExpressionModel<T>*)(*it);
-			core::BinaryShadowExpression<T>* bse = (core::BinaryShadowExpression<T>*) bem->getOperator();
+			BinaryExpressionModel<T>*  bem = (BinaryExpressionModel<T>*)(*it);
+			BinaryShadowExpression<T>* bse = (BinaryShadowExpression<T>*) bem->getOperator();
 			SugenoThen<T>* sugThen = (SugenoThen<T>*)bse->getTarget();
 
 			numerator += (*it)->evaluate();
-			denominator += sugThen->premiseValue();
+			denominator += sugThen->PremiseValue();
 		}
 
-		if (den != 0)
-			return num / den;
+		if (denominator != 0)
+			return numerator / denominator;
 		else
-			return 0;*/
+			return 0;
 	}
 
 

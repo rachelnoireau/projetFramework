@@ -4,41 +4,34 @@
 
 #include "Then.h"
 
-namespace core {
+namespace Core {
 	template <class T>
 	class SugenoThen : public Then<T> {
 	public:
-		SugenoThen();
-		virtual ~SugenoThen();
-		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
+		SugenoThen() {};
+		virtual ~SugenoThen() {};
+		virtual T evaluate(Expression<T>*, Expression<T>*) const;
 
-		void updatePremiseValue(Expression<T> * p);
+		/*void updatePremiseValue(Expression<T> * p);*/
 
-		T PremiseValue();
+		virtual T getPremiseValue();
 
 	private:
 		T premiseValue;
 	};
 
-	template<class T>
-	inline SugenoThen<T>::SugenoThen()
-	{
-	}
 
-	template <class T>
-	SugenoThen<T>::~SugenoThen()
-	{}
 
 	
 
-	template<class T>
+	/*template<class T>
 	void SugenoThen<T>::updatePremiseValue(Expression<T> * p)
 	{
 		premiseValue = p->evaluate();
-	}
+	}*/
 
 	template<class T>
-	inline T SugenoThen<T>::PremiseValue()
+	T SugenoThen<T>::getPremiseValue()
 	{
 		return premiseValue;
 	}
@@ -50,8 +43,8 @@ namespace core {
 	{
 		T lev = l->evaluate();
 		T revt = r->evaluate();
-		premisevalue = lev * rev;
-		return premisevalue;
+		premiseValue = lev * rev;
+		return premiseValue;
 	}
 
 }

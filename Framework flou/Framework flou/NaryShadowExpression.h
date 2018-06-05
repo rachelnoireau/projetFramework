@@ -6,16 +6,16 @@
 #include "NaryExpression.h"
 #include "Expression.h"
 
-namespace core {
+namespace Core {
 	template<class T>
 	class NaryShadowExpression : public NaryExpression<T>
 	{
 	public:
-		NaryShadowExpression();
+		NaryShadowExpression() {};
 		NaryShadowExpression(NaryExpression<T> * e);
-		virtual ~NaryShadowExpression();
+		virtual ~NaryShadowExpression() {};
 
-		virtual T evaluate(typename vector<Expression<T>*> * operands) const;
+		virtual T evaluate(vector<Expression<T>*> * operands) const;
 
 		void setTarget(NaryExpression<T> * e);
 		NaryExpression<T> * getTarget();
@@ -24,21 +24,12 @@ namespace core {
 		NaryExpression<T> * target;
 	};
 
-	template<class T>
-	NaryShadowExpression<T>::NaryShadowExpression()
-	{
-	}
 	
 	template<class T>
 	NaryShadowExpression<T>::NaryShadowExpression(NaryExpression<T> * e) :
 		target(e)
 	{}
 
-	template<class T>
-	NaryShadowExpression<T>::~NaryShadowExpression()
-	{
-		delete target;
-	}
 
 	template<class T>
 	void NaryShadowExpression<T>::setTarget(NaryExpression<T> * e)
@@ -56,7 +47,7 @@ namespace core {
 	T NaryShadowExpression<T>::evaluate(typename vector<Expression<T>*> * operands) const
 	{
 		if (target != NULL)
-			return target.evaluate(operands);
+			return target->evaluate(operands);
 		else
 			throw std::exception();
 	}

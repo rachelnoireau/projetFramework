@@ -2,41 +2,29 @@
 #ifndef SUGENOCONCLUSION_H
 #define SUGENOCONCLUSION_H
 
-#include "SugenoDefuzz.h"
 #include "NaryExpression.h"
-#include "BinaryExpressionModel.h"
-#include "BinaryShadowExpression.h"
 
-namespace core {
+
+namespace Core {
 
 	template <class T>
 	class SugenoConclusion : public NaryExpression<T> {
 
 	public:
-		SugenoConclusion(const std::vector<T>);
-		virtual ~SugenoConclusion();
+		SugenoConclusion(std::vector<T>* coeff):coeff(coeff) {};
+		virtual ~SugenoConclusion() {};
 
-		virtual T evaluate(std::vector<Expression<T> >) const;
+		virtual T evaluate(std::vector<Expression<T>*>* operands) const;
 
 	private:
-		std::vector<T> coeff;
+		std::vector<T> *coeff;
 	};
 
-	template<class T>
-	inline SugenoConclusion<T>::SugenoConclusion(const std::vector<T> coef) : coeff(coef)
-	{
-	}
 
-	template<class T>
-	inline SugenoConclusion<T>::~SugenoConclusion()
-	{
-		delete[] coeff;
-	}
-
-	template<class T>
-	T SugenoConclusion<T>::evaluate(std::vector<Expression<T> > vector) const {
-		/*T sum;
-		typename std::vector<T>::const_iterator it = vector.begin();
+	/*template<class T>
+	T SugenoConclusion<T>::evaluate(std::vector<Expression<T>* >* operands) const {
+		T sum = 0;
+		typename std::vector<T>::const_iterator it = operands.begin();
 		for (; it != vector.end(); ++it)
 			coeff.push_back(vector[it]);
 
@@ -44,8 +32,29 @@ namespace core {
 		for (; it != coeff.end(); ++it)
 			sum += coeff[it];
 
-		return sum;*/
+		return sum;
+	}*/
+
+	template <class T>
+	T SugenoConclusion<T>::evaluate(std::vector<Expression<T>*>* operands) const
+	{
+		std::vector<T>::const_iterator itcoef = coeff->begin();
+		std::vector<core::Expression<T>*>::const_iterator itexpr = operands->begin();
+		T z = 0;
+
+		// calcul de la somme des Zi
+		for (; itexpr != operands->end() && itcoef != coeff->end(); itexpr++, itcoef++)
+		{
+			// evaluation de la règle courante
+			T eval = (*itexpr)->evaluate();
+
+			// multiplication par le coefficient associé à cette règle
+			z+= (*itcoef) * eval;
+		}
+
+		return z;
 	}
+
 
 }
 

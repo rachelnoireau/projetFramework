@@ -2,7 +2,7 @@
 #ifndef NARYEXPRESSION_H
 #define NARYEXPRESSION_H
 
-namespace core
+namespace Core
 {
 	template <class T>
 	class NaryExpression
