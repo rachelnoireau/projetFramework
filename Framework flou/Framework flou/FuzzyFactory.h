@@ -63,21 +63,21 @@ namespace Fuzzy {
 
 		std::set<Core::Expression<T>*> memory;
 	};
-	
+	/*
 	template<class T>
 	FuzzyFactory<T>::FuzzyFactory(UnaryShadowExpression<T>* _not, BinaryShadowExpression<T>* _and, BinaryShadowExpression<T>* _or, BinaryShadowExpression<T>* _then, BinaryShadowExpression<T>* _defuzz) :
 	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{	
 	}
 	
-	/*
+	*/
 	template<class T>
 	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz):
 	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{
 
 
-	}*/
+	}
 
 
 	template<class T>
