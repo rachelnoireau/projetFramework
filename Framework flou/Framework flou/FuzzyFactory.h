@@ -15,6 +15,9 @@
 #include "Is.h"
 #include "And.h"
 #include "Or.h"
+#include "SugenoDefuzz.h"
+#include "SugenoConclusion.h"
+
 
 #include <set>
 
@@ -24,8 +27,10 @@ namespace Fuzzy {
 
 	public:
 		//FuzzyFactory(UnaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*);
+		FuzzyFactory() {};
 		~FuzzyFactory();
-		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, MamdaniDefuzz<T>*);
+		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*);
+		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*, SugenoDefuzz<T>*, SugenoConclusion<T>*);
 
 		virtual Expression<T>* Hold(Expression<T>*);
 		virtual Expression<T>* NewUnary(UnaryExpression<T>* ope, Expression<T>* o);
@@ -39,8 +44,8 @@ namespace Fuzzy {
 		Core::Expression<T>* NewDefuzz(Core::Expression<T>* r, Core::Expression<T>* l, T, T, T);
 		Core::Expression<T>* NewNot(Core::Expression<T>* o);
 		Core::Expression<T>* NewIs( Is<T>* i,Core::Expression<T>*o);
-		Core::Expression<T>* NewSugeno(std::vector<core::Expression<T>*>*);
-		Core::Expression<T>* NewConclusion(std::vector<core::Expression<T>*>*);
+		Core::Expression<T>* NewSugeno(std::vector<Core::Expression<T>*>*);
+		Core::Expression<T>* NewConclusion(std::vector<Core::Expression<T>*>*);
 		
 		void changeAnd(And<T>* o);
 		void changeOr(Or<T>* o);
@@ -141,7 +146,7 @@ namespace Fuzzy {
 	}
 
 	template <class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<core::Expression<T>*>* operands)
+	Core::Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<Core::Expression<T>*>* operands)
 	{
 		return NewNary(sugeno, operands);
 	}
@@ -152,7 +157,7 @@ namespace Fuzzy {
 	}
 
 	template <class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewConclusion(std::vector<core::Expression<T>*>* operands)
+	Core::Expression<T>* FuzzyFactory<T>::NewConclusion(std::vector<Core::Expression<T>*>* operands)
 	{
 		return NewNary(conclusion, operands);
 	}
