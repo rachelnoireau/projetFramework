@@ -231,7 +231,7 @@ namespace Fuzzy {
 #include "NaryShadowExpression.h"
 
 
-namespace Core
+namespace Fuzzy
 {
 	template <class T>
 	class FuzzyFactory : public ExpressionFactory<T>
