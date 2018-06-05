@@ -23,9 +23,9 @@ namespace Fuzzy {
 	class FuzzyFactory : public Core::ExpressionFactory<T> {
 
 	public:
-		FuzzyFactory(UnaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*);
+		//FuzzyFactory(UnaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*);
 		~FuzzyFactory();
-		//FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, MamdaniDefuzz<T>*);
+		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, MamdaniDefuzz<T>*);
 
 		virtual Expression<T>* Hold(Expression<T>*);
 		virtual Expression<T>* NewUnary(UnaryExpression<T>* ope, Expression<T>* o);
@@ -39,8 +39,8 @@ namespace Fuzzy {
 		Core::Expression<T>* NewDefuzz(Core::Expression<T>* r, Core::Expression<T>* l, T, T, T);
 		Core::Expression<T>* NewNot(Core::Expression<T>* o);
 		Core::Expression<T>* NewIs( Is<T>* i,Core::Expression<T>*o);
-		Core::Expression<T>* NewSugeno(std::vector<core::Expression<T>*>*);
-		Core::Expression<T>* NewConclusion(std::vector<core::Expression<T>*>*);
+		Core::Expression<T>* NewSugeno(std::vector<Core::Expression<T>*>*);
+		Core::Expression<T>* NewConclusion(std::vector<Core::Expression<T>*>*);
 		
 		void changeAnd(And<T>* o);
 		void changeOr(Or<T>* o);
@@ -72,9 +72,15 @@ namespace Fuzzy {
 	
 	*/
 	template<class T>
-	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz):
-	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
+	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz)//:
+	//andVar(Core::BinaryShadowExpression<T>(_and)), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{
+		andVar = new Core::BinaryShadowExpression<T>(_and);
+		orVar= new Core::BinaryShadowExpression<T>(_or);
+		then =new Core::BinaryShadowExpression<T> (_then);
+		//agg=new Core::BinaryShadowExpression<T> (_agg);
+		defuzz=new Core::BinaryShadowExpression<T> (_defuzz);
+		notVar=new Core::UnaryShadowExpression<T> (_not);
 
 
 	}
@@ -143,7 +149,7 @@ namespace Fuzzy {
 	}
 
 	template <class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<core::Expression<T>*>* operands)
+	Core::Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<Core::Expression<T>*>* operands)
 	{
 		return NewNary(sugeno, operands);
 	}
@@ -154,7 +160,7 @@ namespace Fuzzy {
 	}
 
 	template <class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewConclusion(std::vector<core::Expression<T>*>* operands)
+	Core::Expression<T>* FuzzyFactory<T>::NewConclusion(std::vector<Core::Expression<T>*>* operands)
 	{
 		return NewNary(conclusion, operands);
 	}
