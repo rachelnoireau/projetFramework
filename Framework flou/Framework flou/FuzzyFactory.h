@@ -39,6 +39,8 @@ namespace Fuzzy {
 		Core::Expression<T>* NewDefuzz(Core::Expression<T>* r, Core::Expression<T>* l, T, T, T);
 		Core::Expression<T>* NewNot(Core::Expression<T>* o);
 		Core::Expression<T>* NewIs( Is<T>* i,Core::Expression<T>*o);
+		Core::Expression<T>* NewSugeno(std::vector<core::Expression<T>*>*);
+		Core::Expression<T>* NewConclusion(std::vector<core::Expression<T>*>*);
 		
 		void changeAnd(And<T>* o);
 		void changeOr(Or<T>* o);
@@ -73,21 +75,12 @@ namespace Fuzzy {
 	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, MamdaniDefuzz<T>* _defuzz):
 	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
 	{
-		/*changeAnd(_and);
-		changeOr(_or);
-		changeThen(_then);
-		changeNot(_not);
-		changeDefuzz(_defuzz);*/
+	
 	}
 
 	template<class T>
 	FuzzyFactory<T>::~FuzzyFactory() {
-		/*delete andVar;
-		delete orVar;
-		delete then;
-		delete notVar;
-		delete defuzz;*/
-
+	
 	}
 
 	template<class T>
@@ -147,10 +140,23 @@ namespace Fuzzy {
 		return NewUnary(&notVar, o);
 	}
 
+	template <class T>
+	Core::Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<core::Expression<T>*>* operands)
+	{
+		return NewNary(sugeno, operands);
+	}
+
 	template<class T>
 	Core::Expression<T>* FuzzyFactory<T>::NewIs(Is<T>* is, Core::Expression<T>* o) {
 		return NewUnary(is, o);
 	}
+
+	template <class T>
+	Core::Expression<T>* FuzzyFactory<T>::NewConclusion(std::vector<core::Expression<T>*>* operands)
+	{
+		return NewNary(conclusion, operands);
+	}
+
 
 	template<class T>
 	void FuzzyFactory<T>::changeAnd(And<T>* o) {
