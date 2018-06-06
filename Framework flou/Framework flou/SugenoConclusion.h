@@ -22,10 +22,10 @@ namespace Fuzzy {
 
 
 	template <class T>
-	T SugenoConclusion<T>::evaluate(std::vector<Expression<T>*>* operands) const
+	T SugenoConclusion<T>::evaluate(std::vector<const Core::Expression<T>*>* operands) const
 	{
 		std::vector<T>::const_iterator itcoef = coeff->begin();
-		std::vector<Core::Expression<T>*>::const_iterator itexpr = operands->begin();
+		std::vector<const Core::Expression<T>*>::const_iterator itexpr = operands->begin();
 		T z;
 		z = 0;
 		T eval;

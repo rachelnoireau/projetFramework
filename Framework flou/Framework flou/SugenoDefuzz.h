@@ -15,12 +15,12 @@ namespace Fuzzy {
 		SugenoDefuzz() {};
 		~SugenoDefuzz() {};
 
-		T evaluate(std::vector<Core::Expression<T>*> *operands) const;
+		virtual T evaluate(std::vector<const Core::Expression<T>*> *operands) const;
 
 	};
 
 	template<class T>
-	T SugenoDefuzz<T>::evaluate(std::vector<Core::Expression<T>*> *operands) const {
+	T SugenoDefuzz<T>::evaluate(std::vector<const Core::Expression<T>*> *operands) const {
 		std::vector<const Core::Expression<T>*>::const_iterator it;
 		T numerator = 0;
 		T denominator = 0;

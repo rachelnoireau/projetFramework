@@ -12,7 +12,7 @@ namespace Core
 		NaryExpression() {};
 		virtual ~NaryExpression() {};
 
-		virtual T evaluate(vector<Expression<T>*>*) const = 0;
+		virtual T evaluate(vector<const Expression<T>*>*) const = 0;
 	};
 }
 
