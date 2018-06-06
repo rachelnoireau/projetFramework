@@ -5,7 +5,7 @@
 #include "NaryExpression.h"
 
 
-namespace Core {
+namespace Fuzzy {
 
 	template <class T>
 	class SugenoConclusion : public NaryExpression<T> {
@@ -20,20 +20,6 @@ namespace Core {
 		std::vector<T> *coeff;
 	};
 
-
-	/*template<class T>
-	T SugenoConclusion<T>::evaluate(std::vector<Expression<T>* >* operands) const {
-		T sum = 0;
-		typename std::vector<T>::const_iterator it = operands.begin();
-		for (; it != vector.end(); ++it)
-			coeff.push_back(vector[it]);
-
-		it = coeff.begin();
-		for (; it != coeff.end(); ++it)
-			sum += coeff[it];
-
-		return sum;
-	}*/
 
 	template <class T>
 	T SugenoConclusion<T>::evaluate(std::vector<Expression<T>*>* operands) const

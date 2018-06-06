@@ -3,7 +3,7 @@
 #define COGDEFUZZ_H
 #include "MamdaniDefuzz.h"
 
-namespace Core {
+namespace Fuzzy {
 	template <class T>
 	class CogDefuzz : public MamdaniDefuzz<T> {
 	public:

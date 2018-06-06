@@ -6,7 +6,7 @@
 #include "BinaryExpressionModel.h"
 #include "BinaryShadowExpression.h"
 
-namespace Core {
+namespace Fuzzy {
 
 	template <class T>
 	class SugenoDefuzz : public NaryExpression<T> {
@@ -32,7 +32,7 @@ namespace Core {
 			SugenoThen<T>* sugThen = (SugenoThen<T>*)bse->getTarget();
 
 			numerator += (*it)->evaluate();
-			denominator += sugThen->PremiseValue();
+			denominator += sugThen->premiseValue();
 		}
 
 		if (denominator != 0)

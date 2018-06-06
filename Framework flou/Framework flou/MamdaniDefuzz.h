@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-namespace Core {
+namespace Fuzzy {
 	template <class T>
 	class MamdaniDefuzz : public BinaryExpression<T> {
 	public:
