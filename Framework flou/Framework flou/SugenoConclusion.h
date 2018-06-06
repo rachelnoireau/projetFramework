@@ -39,14 +39,15 @@ namespace Core {
 	T SugenoConclusion<T>::evaluate(std::vector<Expression<T>*>* operands) const
 	{
 		std::vector<T>::const_iterator itcoef = coeff->begin();
-		std::vector<core::Expression<T>*>::const_iterator itexpr = operands->begin();
-		T z = 0;
-
+		std::vector<Core::Expression<T>*>::const_iterator itexpr = operands->begin();
+		T z;
+		z = 0;
+		T eval;
 		// calcul de la somme des Zi
 		for (; itexpr != operands->end() && itcoef != coeff->end(); itexpr++, itcoef++)
 		{
 			// evaluation de la règle courante
-			T eval = (*itexpr)->evaluate();
+			eval = (*itexpr)->evaluate();
 
 			// multiplication par le coefficient associé à cette règle
 			z+= (*itcoef) * eval;

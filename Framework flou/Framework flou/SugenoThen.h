@@ -9,7 +9,7 @@ namespace Fuzzy {
 	public:
 		SugenoThen() {};
 		virtual ~SugenoThen() {};
-		virtual T evaluate(Expression<T>*, Expression<T>*) const;
+		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
 
 		/*void updatePremiseValue(Expression<T> * p);*/
 
