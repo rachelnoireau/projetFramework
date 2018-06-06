@@ -14,7 +14,7 @@ namespace Fuzzy {
 		SugenoConclusion(std::vector<T>* coeff):coeff(coeff) {};
 		virtual ~SugenoConclusion() {};
 
-		virtual T evaluate(std::vector<Expression<T>*>* operands) const;
+		virtual T evaluate(std::vector<const Core::Expression<T>*>* operands) const;
 
 	private:
 		std::vector<T> *coeff;
