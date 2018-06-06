@@ -12,7 +12,7 @@ namespace Fuzzy {
 
 		typedef pair<vector<T>, vector<T> > Shape;
 		T Defuzz(Shape) const;
-		T evaluate(Expression<T>*, Expression<T>*) const;
+		T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
 		//Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) const;
 
 		void setStep(const T&);
@@ -75,7 +75,7 @@ namespace Fuzzy {
 	}
 
 	template<class T>
-	T CogDefuzz<T>::evaluate(Expression<T>* l, Expression<T>* r) const
+	T CogDefuzz<T>::evaluate(Core::Expression<T>* l, Core::Expression<T>* r) const
 	{
 		//T left = l->evaluate();
 		//T ri = r->evaluate();
