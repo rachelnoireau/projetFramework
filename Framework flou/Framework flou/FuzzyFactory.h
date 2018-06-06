@@ -312,60 +312,61 @@ namespace Fuzzy
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newNot(Core::Expression<T>* o)
 	{
-		return newUnary(notVar, o);
+		return ExpressionFactory<T>::newUnary(notVar, o);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newAnd(Core::Expression<T>* l, Core::Expression<T>* r)
 	{
-		return newBinary(andVar, l, r);
+		return ExpressionFactory<T>::newBinary(andVar, l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newOr(Core::Expression<T>* l, Core::Expression<T>* r)
 	{
-		return newBinary(orVar , l, r);
+		return ExpressionFactory<T>::newBinary(orVar , l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newThen(Core::Expression<T>* l, Core::Expression<T>* r)
 	{
-		return newBinary(then, l, r);
+		return ExpressionFactory<T>::newBinary(then, l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newAgg(Core::Expression<T>* l, Core::Expression<T>* r)
 	{
-		return newBinary(agg, l, r);
+		return ExpressionFactory<T>::newBinary(agg, l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newDefuzz(Core::Expression<T>* l, Core::Expression<T>* r, const T& min, const T& max, const T& step)
 	{
-		MamdaniDefuzz<T>* target = (MamdaniDefuzz<T>*) defuzz->getTarget();
+		//MamdaniDefuzz<T>* target = (MamdaniDefuzz<T>*) defuzz->getTarget();
+		CogDefuzz<T>* target = (CogDefuzz<T>*) defuzz->getTarget();
 		target->setMin(min);
 		target->setMax(max);
 		target->setStep(step);
 
-		return newBinary(defuzz, l, r);
+		return ExpressionFactory<T>::newBinary(defuzz, l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newIs(Is<T>* s, Core::Expression<T>* o)
 	{
-		return newUnary(s, o);
+		return ExpressionFactory<T>::newUnary(s, o);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newSugeno(std::vector<Core::Expression<T>*>* operands)
 	{
-		return newNary(sugeno, operands);
+		return ExpressionFactory<T>::newNary(sugeno, operands);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newConclusion(std::vector<Core::Expression<T>*>* operands)
 	{
-		return newNary(conclusion, operands);
+		return ExpressionFactory<T>::newNary(conclusion, operands);
 	}
 
 	template <class T>

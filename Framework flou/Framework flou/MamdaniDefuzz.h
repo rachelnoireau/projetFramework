@@ -2,36 +2,38 @@
 #define MAMDANIDEFUZZ_H
 #include "BinaryExpression.h"
 #include <vector>
+#include "Evaluator.h"
 using namespace std;
 
 namespace Fuzzy {
 	template <class T>
 	class MamdaniDefuzz : public BinaryExpression<T> {
 	public:
-		typedef pair<vector<T>, vector<T> > Shape;
+		//typedef pair<vector<T>, vector<T> > Shape;
 
-		class EvalFunc
+		/*class EvalFunc
 		{
 		public:
 			virtual T operator () (const T&) = 0;
-		};
+		};*/
 		
 		//MamdaniDefuzz(T, T, T)
 
-		virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
-		virtual T Defuzz(Shape) const = 0;
-		Shape BuildShape(Expression<T>*, ValueModel<T>*,T,T,T) const ; //EvalFunc& f
+		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const = 0;
+		virtual T Defuzz(typename Evaluator<T>::Shape) const = 0;
+		//Shape BuildShape(Expression<T>*, ValueModel<T>*,T,T,T) const ; //EvalFunc& f
 
-		/*void setStep(const T&);
+		/*
+		void setStep(const T&);
 		T getStep() const;
 		void setMin(const T&);
 		T getMin() const;
 		void setMax(const T&);
 		T getMax() const;*/
 
-	/*	
+		
 	private:
-		T  step;
+		/*T  step;
 		T  min;
 		T  max;*/
 
@@ -68,7 +70,7 @@ namespace Fuzzy {
 	}
 	*/
 
-	template<class T>
+	/*template<class T>
 	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(Expression<T>* entre, ValueModel<T>* exit, T min, T max, T step ) const {
 		vector<T> x, y;
 
@@ -83,7 +85,7 @@ namespace Fuzzy {
 		exit->ValueModel<T>::SetValue(memory);
 
 		return Shape(x, y);
-	}
+	}*/
 	
 	/*
 	template<class T>

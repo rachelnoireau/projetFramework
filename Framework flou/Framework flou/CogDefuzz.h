@@ -10,11 +10,11 @@ namespace Fuzzy {
 		CogDefuzz() {};
 		CogDefuzz(T min, T max, T step);
 
-		typedef pair<vector<T>, vector<T> > Shape;
-		T Defuzz(Shape) const;
+		//typedef pair<vector<T>, vector<T> > Shape;
+		T Defuzz(typename Evaluator<T>::Shape) const;
 		T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
 		//Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc& f) const;
-
+		
 		void setStep(const T&);
 		T getStep() const;
 		void setMin(const T&);
@@ -27,6 +27,7 @@ namespace Fuzzy {
 		T  min;
 		T  max;
 	};
+
 	template<class T>
 	CogDefuzz<T>::CogDefuzz(T _min, T _max, T _step):
 		min(_min) , max(_max) , step(_step)
@@ -65,7 +66,7 @@ namespace Fuzzy {
 
 
 	template<class T>
-	T CogDefuzz<T>::Defuzz(Shape shape) const
+	T CogDefuzz<T>::Defuzz(typename Evaluator<T>::Shape shape) const
 	{
 		T exit = 0;
 		for (unsigned int i = 0; i<shape.first.size(); i++) {
@@ -79,7 +80,7 @@ namespace Fuzzy {
 	{
 		//T left = l->evaluate();
 		//T ri = r->evaluate();
-		return Defuzz(MamdaniDefuzz<T>::BuildShape(l, (ValueModel<T>*) r, min, max, step));
+		return Defuzz(Evaluator<T>::BuildShape(l, (ValueModel<T>*) r, min, max, step));
 	}
 	 
 /*

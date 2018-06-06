@@ -1,4 +1,3 @@
-#pragma once
 #ifndef EVALUATOR_H
 #define EVALUATOR_H
 //#include "Shape.h"
@@ -13,25 +12,29 @@ namespace Core {
 	template <class T>
 	class Evaluator {
 	public:
-		//virtual T evaluate() const = 0;
+
 		//virtual T operator () (const T&) = 0;
-		typedef pair<vector<T>, vector<T> > Shape;
-		static Shape BuildShape(const T& min, const T& max, const T& step, EvalFunc&);
+		typedef  pair<vector<T>, vector<T> > Shape ;
+
+		Shape BuildShape(Expression<T>* entre, ValueModel<T>* exit, T const min, T const max, T const step) const;//static
 		//static ostream& PrintShape(ostream&, const Shape& s);
 	};
 
 	
 
-
-	template <class T>
-	typename Evaluator<T>::Shape Evaluator<T>::BuildShape(const T& min, const T& max, const T& step, EvalFunc& f)
-	{
+	template<class T>
+	typename Evaluator<T>::Shape Evaluator<T>::BuildShape(Expression<T>* entre, ValueModel<T>* exit, T min, T max, T step) const {
 		vector<T> x, y;
+
+		T memory = exit->evaluate();
+
 		for (T i = min; i <= max; i += step)
 		{
-			y.push_back(f(i));
+			y.push_back(entre->evaluate());
 			x.push_back(i);
 		}
+		exit->ValueModel<T>::SetValue(memory);
+
 		return Shape(x, y);
 	}
 }
