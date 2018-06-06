@@ -4,17 +4,17 @@
 #include "UnaryExpression.h"
 #include "Expression.h"
 
-
-template <class T>
+namespace Fuzzy {
+	template <class T>
 	class Not : public UnaryExpression<T> {
 
-public:
-	Not() {};
-	virtual ~Not() {};
-	virtual T evaluate(Core::Expression<T>*) const = 0;
-};
+	public:
+		Not() {};
+		virtual ~Not() {};
+		virtual T evaluate(Core::Expression<T>*) const = 0;
+	};
 
-
+}
 
 
 
