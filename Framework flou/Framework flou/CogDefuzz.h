@@ -80,17 +80,9 @@ namespace Fuzzy {
 	{
 		//T left = l->evaluate();
 		//T ri = r->evaluate();
-		return Defuzz(Evaluator<T>::BuildShape(l, (ValueModel<T>*) r, min, max, step));
+		return Defuzz(Evaluator<T>::BuildShape(l, (Core::ValueModel<T>*) r, min, max, step));
 	}
 	 
-/*
-	template<class T>
-	T CogDefuzz<T>::evaluate(Expression<T>*l, Expression<T>*r) const { 
-		T left = l->evaluate();
-		T right = r->evaluate();
-		return defuzz(BuildShape(left,right)
-	}
-*/
 	
 }
 #endif
