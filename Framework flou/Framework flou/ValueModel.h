@@ -8,6 +8,8 @@ namespace Core {
 	template <class T>
 	class ValueModel : public Expression<T> {
 	public:
+		ValueModel() {};
+		virtual ~ValueModel() {};
 		ValueModel(T _value);
 		T evaluate() const;
 		void SetValue(const T&);

@@ -42,7 +42,7 @@ namespace Core {
 	T SugenoThen<T>::evaluate(Core::Expression<T>* l, Core::Expression<T>* r) const
 	{
 		T lev = l->evaluate();
-		T revt = r->evaluate();
+		T rev = r->evaluate();
 		premiseValue = lev * rev;
 		return premiseValue;
 	}

@@ -9,6 +9,7 @@ namespace Core {
 	template <class T>
 	class UnaryExpressionModel : public UnaryExpression<T>, public Expression<T>{ 
 	public:
+		UnaryExpressionModel() {};
 		UnaryExpressionModel(UnaryExpression<T>* ope, Expression<T>* o);
 
 		T evaluate() const;

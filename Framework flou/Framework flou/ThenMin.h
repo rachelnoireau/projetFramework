@@ -2,6 +2,7 @@
 #ifndef THENMIN_H
 #define THENMIN_H
 #include "Then.h"
+#include "Expression.h"
 
 namespace Fuzzy {
 	template <class T>

@@ -1,6 +1,7 @@
 #ifndef THENMULT_H
 #define THENMULT_H
 #include "Then.h"
+#include "Expression.h"
 
 namespace Fuzzy {
 	template <class T>
