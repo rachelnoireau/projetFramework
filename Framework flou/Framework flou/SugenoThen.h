@@ -1,10 +1,9 @@
-#pragma once
 #ifndef SUGENOTHEN_H
 #define SUGENOTHEN_H
 
 #include "Then.h"
 
-namespace Core {
+namespace Fuzzy {
 	template <class T>
 	class SugenoThen : public Then<T> {
 	public:
