@@ -32,7 +32,7 @@ namespace Fuzzy {
 			SugenoThen<T>* sugThen = (SugenoThen<T>*)bse->getTarget();
 
 			numerator += (*it)->evaluate();
-			denominator += sugThen->premiseValue();
+			denominator += sugThen->getPremiseValue();
 		}
 
 		if (denominator != 0)

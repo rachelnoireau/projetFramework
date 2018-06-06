@@ -1,4 +1,3 @@
-#pragma once
 #ifndef MAMDANIDEFUZZ_H
 #define MAMDANIDEFUZZ_H
 #include "BinaryExpression.h"
