@@ -242,15 +242,15 @@ namespace Fuzzy
 		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*, SugenoDefuzz<T>*, SugenoConclusion<T>*);
 		virtual ~FuzzyFactory();
 
-		virtual Core::Expression<T>* newNot(Core::Expression<T>*);
-		virtual Core::Expression<T>* newAnd(Core::Expression<T>*, Core::Expression<T>*);
-		virtual Core::Expression<T>* newOr(Core::Expression<T>*, Core::Expression<T>*);
-		virtual Core::Expression<T>* newThen(Core::Expression<T>*, Core::Expression<T>*);
-		virtual Core::Expression<T>* newAgg(Core::Expression<T>*, Core::Expression<T>*);
-		virtual Core::Expression<T>* newDefuzz(Core::Expression<T>*, Core::Expression<T>*, const T&, const T&, const T&);
-		virtual Core::Expression<T>* newIs(Is<T>*, Core::Expression<T>*);
-		virtual Core::Expression<T>* newSugeno(std::vector<Core::Expression<T>*>*);
-		virtual Core::Expression<T>* newConclusion(std::vector<Core::Expression<T>*>*);
+		Core::Expression<T>* newNot(Core::Expression<T>*);
+		Core::Expression<T>* newAnd(Core::Expression<T>*, Core::Expression<T>*);
+		Core::Expression<T>* newOr(Core::Expression<T>*, Core::Expression<T>*);
+		Core::Expression<T>* newThen(Core::Expression<T>*, Core::Expression<T>*);
+		Core::Expression<T>* newAgg(Core::Expression<T>*, Core::Expression<T>*);
+		Core::Expression<T>* newDefuzz(Core::Expression<T>*, Core::Expression<T>*, const T&, const T&, const T&);
+		Core::Expression<T>* newIs(Is<T>*, Core::Expression<T>*);
+		Core::Expression<T>* newSugeno(std::vector<Core::Expression<T>*>*);
+		Core::Expression<T>* newConclusion(std::vector<Core::Expression<T>*>*);
 
 		void changeNot(Not<T>*);
 		void changeAnd(And<T>*);
