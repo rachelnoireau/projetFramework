@@ -1,11 +1,14 @@
 #ifndef ANDMULT_H
 #define ANDMULT_H
 #include "And.h"
+#include "Expression.h"
 
 namespace Fuzzy {
 	template <class T>
 	class AndMult : public And<T> {
 	public:
+		AndMult() {};
+		virtual ~AndMult() {};
 		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
 	};
 

@@ -3,6 +3,9 @@
 #define EVALUATOR_H
 //#include "Shape.h"
 #include <vector>
+#include "ValueModel.h"
+#include "Expression.h"
+
 using namespace std;
  
 namespace Core {

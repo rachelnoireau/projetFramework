@@ -1,11 +1,14 @@
 #ifndef ANDMIN_H
 #define ANDMIN_H
 #include "And.h"
+#include "Expression.h"
 
 namespace Fuzzy {
 	template <class T>
 	class AndMin : public And<T> {
 	public:
+		AndMin() {};
+		virtual ~AndMin() {};
 		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
 	};
 
