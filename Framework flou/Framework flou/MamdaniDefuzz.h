@@ -32,7 +32,7 @@ namespace Fuzzy {
 		T getMax() const;*/
 
 		
-	private:
+	//private:
 		/*T  step;
 		T  min;
 		T  max;*/

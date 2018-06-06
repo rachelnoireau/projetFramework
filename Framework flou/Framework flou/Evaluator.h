@@ -20,10 +20,9 @@ namespace Core {
 		//static ostream& PrintShape(ostream&, const Shape& s);
 	};
 
-	
 
 	template<class T>
-	static Shape Evaluator<T>::BuildShape(Expression<T>* entre, ValueModel<T>* exit, T const min, T const max, T const step) const {
+	static Shape Evaluator<T>::BuildShape(Expression<T>* entre, ValueModel<T>* exit, T const min, T const max, T const step) const {//attribut const
 		vector<T> x, y;
 
 		T memory = exit->evaluate();
