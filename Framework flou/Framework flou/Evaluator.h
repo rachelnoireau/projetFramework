@@ -16,14 +16,14 @@ namespace Core {
 		//virtual T operator () (const T&) = 0;
 		typedef  pair<vector<T>, vector<T> > Shape ;
 
-		Shape BuildShape(Expression<T>* entre, ValueModel<T>* exit, T const min, T const max, T const step) const;//static
+		static Shape BuildShape(Expression<T>* entre, ValueModel<T>* exit, T const min, T const max, T const step) const;//static
 		//static ostream& PrintShape(ostream&, const Shape& s);
 	};
 
 	
 
 	template<class T>
-	typename Evaluator<T>::Shape Evaluator<T>::BuildShape(Expression<T>* entre, ValueModel<T>* exit, T min, T max, T step) const {
+	static Shape Evaluator<T>::BuildShape(Expression<T>* entre, ValueModel<T>* exit, T const min, T const max, T const step) const {
 		vector<T> x, y;
 
 		T memory = exit->evaluate();

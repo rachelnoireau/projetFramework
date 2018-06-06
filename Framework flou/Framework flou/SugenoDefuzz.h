@@ -15,7 +15,7 @@ namespace Fuzzy {
 		SugenoDefuzz() {};
 		~SugenoDefuzz() {};
 
-		virtual T evaluate(std::vector< Core::Expression<T>*> *operands) const;
+		T evaluate(std::vector< Core::Expression<T>*> *operands) const;
 
 	};
 

@@ -26,7 +26,7 @@ namespace Fuzzy {
 
 	{
 		std::vector<T>::const_iterator itcoef = coeff->begin();
-		std::vector<const Core::Expression<T>*>::const_iterator itexpr = operands->begin();
+		std::vector</*const*/ Core::Expression<T>*>::const_iterator itexpr = operands->begin();
 		T z;
 		z = 0;
 		T eval;
