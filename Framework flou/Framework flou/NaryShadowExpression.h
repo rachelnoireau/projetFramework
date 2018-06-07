@@ -5,6 +5,7 @@
 #include <vector>
 #include "NaryExpression.h"
 #include "Expression.h"
+#include "ExpressionException.h"
 
 namespace Core {
 	template<class T>
@@ -46,10 +47,14 @@ namespace Core {
 	template<class T>
 	T NaryShadowExpression<T>::evaluate(typename vector<const Expression<T>*> * operands) const
 	{
-		if (target != NULL)
+		/*if (target != NULL)
 			return target->evaluate(operands);
 		else
-			throw std::exception();
+			throw std::exception();*/
+		if (target == NULL)
+			throw new ExpressionException("target null");
+
+		return target->evaluate(operands);
 	}
 
 

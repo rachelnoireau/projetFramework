@@ -1,8 +1,8 @@
-#ifndef MAMDANIDEFUZZ_H
+/*#ifndef MAMDANIDEFUZZ_H
 #define MAMDANIDEFUZZ_H
 #include "BinaryExpression.h"
 #include <vector>
-using namespace std;
+
 
 namespace Fuzzy {
 	template <class T>
@@ -14,13 +14,13 @@ namespace Fuzzy {
 		{
 		public:
 			virtual T operator () (const T&) = 0;
-		};
+		};*/
 		
 		//MamdaniDefuzz(T, T, T)
 
-		virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
+		/*virtual T evaluate(Expression<T>*, Expression<T>*) const = 0;
 		virtual T Defuzz(Shape) const = 0;
-		Shape BuildShape(Expression<T>*, ValueModel<T>*,T,T,T) const ; //EvalFunc& f
+		Shape BuildShape(Expression<T>*, ValueModel<T>*,T,T,T) const ;*/ //EvalFunc& f
 
 		/*void setStep(const T&);
 		T getStep() const;
@@ -34,8 +34,8 @@ namespace Fuzzy {
 		T  step;
 		T  min;
 		T  max;*/
-
-	};
+/*
+	};*/
 	/*
 	template<class T>
 	void MamdaniDefuzz<T>::setStep(const T& st) {
@@ -68,7 +68,7 @@ namespace Fuzzy {
 	}
 	*/
 
-	template<class T>
+	/*template<class T>
 	typename MamdaniDefuzz<T>::Shape MamdaniDefuzz<T>::BuildShape(Expression<T>* entre, ValueModel<T>* exit, T min, T max, T step ) const {
 		vector<T> x, y;
 
@@ -84,7 +84,7 @@ namespace Fuzzy {
 
 		return Shape(x, y);
 	}
-	
+	*/
 	/*
 	template<class T>
 	T MamdaniDefuzz<T>::evaluate(Expression<T>* l, Expression<T>* r) const
@@ -93,6 +93,50 @@ namespace Fuzzy {
 		T right = r->evaluate();
 		return defuzz(BuildShape(left, right,step));
 	}*/
-
+/*
 }
+#endif*/
+
+#ifndef MAMDANIDEFUZZ_H
+#define MAMDANIDEFUZZ_H
+
+#include "Evaluator.h"
+
+using namespace Core;
+
+namespace Fuzzy
+{
+	template <class T>
+	class MamdaniDefuzz : public Core::BinaryExpression<T>
+	{
+	public:
+		typedef std::pair<std::vector<T>, std::vector<T>> Shape;
+
+		MamdaniDefuzz() :min(0), max(0), step(0) {};
+		MamdaniDefuzz(const T& min, const T& max, const T& step) : min(min), max(max), step(step) {};
+		~MamdaniDefuzz() {};
+
+		virtual void setMin(const T& _min) { min = _min; }
+		virtual void setMax(const T& _max) { max = _max; }
+		virtual void setStep(const T& _step) { step = _step; }
+
+		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
+
+	
+		virtual T Defuzz(const typename Evaluator<T>::Shape&) const = 0;
+
+	private:
+		T min, max, step;
+	};
+
+	template <class T>
+	T MamdaniDefuzz<T>::evaluate(Core::Expression<T>* l, Core::Expression<T>* r) const
+	{
+		Evaluator<T> e;
+		Evaluator<T>::Shape s = e.BuildShape(min, max, step, (Core::ValueModel<T>*) l, r);
+
+		return Defuzz(s);
+	}
+}
+
 #endif

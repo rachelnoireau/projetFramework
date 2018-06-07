@@ -24,7 +24,7 @@ namespace Core {
 	template<class T>
 	BinaryShadowExpression<T>::BinaryShadowExpression(BinaryExpression<T>* tar) :
 		target(tar)
-	{std::cout << "init target" << std::endl;}
+	{/*std::cout << "init target" << std::endl;*/}
 
 	/*
 	template<class T>
@@ -48,7 +48,7 @@ namespace Core {
 	template <class T>
 	T BinaryShadowExpression<T>::evaluate(Core::Expression<T>* l, Core::Expression<T>* r) const {
 		if (target == NULL) throw nullptr;
-		std::cout << "target pas null" << std::endl;
+		
 		return target->evaluate(l, r);
 
 	}

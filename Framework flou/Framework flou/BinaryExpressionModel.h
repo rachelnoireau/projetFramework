@@ -3,6 +3,7 @@
 #include "Expression.h"
 #include "BinaryExpression.h"
 #include "ExceptionEvaluate.h"
+#include "ExpressionException.h"
 
 namespace Core {
 	template <class T>
@@ -52,16 +53,28 @@ namespace Core {
 
 	template <class T>
 	T BinaryExpressionModel<T>::evaluate() const {
-		if (left == NULL) throw nullptr;
+	/*	if (left == NULL) throw nullptr;
 		if (right == NULL) throw nullptr;
+		return evaluate(left, right);*/
+		if (left == NULL)
+			throw new ExpressionException("left null");
+
+		if (right == NULL)
+			throw new ExpressionException("right null");
+
 		return evaluate(left, right);
+
 	}
 
 	template <class T>
 	T BinaryExpressionModel<T>::evaluate(Expression<T>* r,Expression<T>* l) const {
-		if (op == NULL) throw new ExceptionTargetAndOperator();
+		/*if (op == NULL) throw new ExpressionException();
 		if (op->evaluate(l, r) == 0) throw std::exception();// new ExceptionEvaluate()
-		return op->evaluate(l,r);
+		return op->evaluate(l,r);*/
+		if (op == NULL)
+			throw new ExpressionException("operateur null");
+		else 
+			return op->evaluate(l, r);
 		
 	}
 }

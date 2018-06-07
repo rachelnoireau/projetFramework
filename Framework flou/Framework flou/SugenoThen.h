@@ -7,11 +7,11 @@ namespace Fuzzy {
 	template <class T>
 	class SugenoThen : public Then<T> {
 	public:
-		SugenoThen() {};
+		SugenoThen() :premiseValue(0) {};
 		virtual ~SugenoThen() {};
 		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
 
-		virtual T getPremiseValue();
+		T getPremiseValue();
 
 	private:
 		mutable T premiseValue;

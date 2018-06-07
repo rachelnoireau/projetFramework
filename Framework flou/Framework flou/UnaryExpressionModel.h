@@ -4,6 +4,7 @@
 #define UNARYEXPRESSIONMODEL_H
 #include "UnaryExpression.h"
 #include "Expression.h"
+#include "ExpressionException.h"
 
 namespace Core {
 	template <class T>
@@ -54,14 +55,20 @@ namespace Core {
 
 	template<class T>
 	T UnaryExpressionModel<T>::evaluate() const {
-		if (operand == NULL) throw nullptr;
+		/*if (operand == NULL) throw nullptr;
+		return evaluate(operand);*/
+		if (operand == NULL)
+			throw new ExpressionException("operande null");
+
 		return evaluate(operand);
 		
 	}
 
 	template<class T>
 	T UnaryExpressionModel<T>::evaluate(Expression<T>* o) const{
-		if (operand == NULL) throw nullptr;
+		if (operatorVar == NULL)
+			throw new ExpressionException("operateur null");
+
 		return operatorVar->evaluate(o);
 		
 	}

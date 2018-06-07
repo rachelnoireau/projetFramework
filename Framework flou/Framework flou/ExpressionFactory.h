@@ -16,11 +16,11 @@ namespace Core
 		typedef vector<Expression<T>*> Memory;
 
 		ExpressionFactory() {};
-		~ExpressionFactory();
+		virtual ~ExpressionFactory();
 
 		UnaryExpressionModel<T>* newUnary(UnaryExpression<T>*, Expression<T>*);
 		BinaryExpressionModel<T>* newBinary(BinaryExpression<T>*, Expression<T>*, Expression<T>*);
-		NaryExpressionModel<T>* newNary(NaryExpression<T>*, std::vector<Expression<T>*>*);
+		NaryExpressionModel<T>* newNary(NaryExpression<T>*, std::vector<const Expression<T>*>*);
 		Expression<T>* hold(Expression<T>*);
 
 	private:
@@ -47,7 +47,7 @@ namespace Core
 	}
 
 	template <class T>
-	NaryExpressionModel<T>* ExpressionFactory<T>::newNary(NaryExpression<T>* ope, std::vector<Expression<T>*>* operands)
+	NaryExpressionModel<T>* ExpressionFactory<T>::newNary(NaryExpression<T>* ope, std::vector<const Expression<T>*>* operands)
 	{
 		return (NaryExpressionModel<T>*) hold(new NaryExpressionModel<T>(ope, operands));
 	}
