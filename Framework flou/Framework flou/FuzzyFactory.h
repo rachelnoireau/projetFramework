@@ -342,7 +342,6 @@ namespace Fuzzy
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newDefuzz(Core::Expression<T>* l, Core::Expression<T>* r, const T& min, const T& max, const T& step)
 	{
-		//MamdaniDefuzz<T>* target = (MamdaniDefuzz<T>*) defuzz->getTarget();
 		CogDefuzz<T>* target = (CogDefuzz<T>*) defuzz->getTarget();
 		target->setMin(min);
 		target->setMax(max);

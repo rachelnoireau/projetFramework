@@ -17,7 +17,13 @@ namespace Fuzzy {
 		T getMid()const;
 		T getMax()const;
 	private:
-		T min, mid, max;	
+		T min, mid, max;
+	/*
+	template <class T>
+	IsTriangle<T>::IsTriangle() : min(0), mid(1), max(2)
+	{}
+	*/
+	
 };
 
 	template <class T>

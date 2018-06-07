@@ -13,7 +13,7 @@ namespace Fuzzy
 	public:
 		typedef std::pair<std::vector<T>, std::vector<T>> Shape;
 
-		MamdaniDefuzz() :min(0), max(0), step(0) {};
+		MamdaniDefuzz() :min(0), max(25), step(1) {};
 		MamdaniDefuzz(const T& min, const T& max, const T& step) : min(min), max(max), step(step) {};
 		~MamdaniDefuzz() {};
 

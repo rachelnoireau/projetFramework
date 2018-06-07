@@ -32,7 +32,7 @@ namespace Fuzzy
 			v->SetValue(i);
 			y.push_back(e->evaluate());
 			x.push_back(i);
-
+			//y.push_back(e->evaluate());
 		}
 
 		v->SetValue(mem);
