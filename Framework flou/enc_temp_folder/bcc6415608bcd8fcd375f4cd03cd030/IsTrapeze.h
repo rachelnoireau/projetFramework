@@ -20,7 +20,7 @@ namespace Fuzzy {
 		virtual T evaluate(Expression<T>*) const;
 
 	private:
-		 T min, mid1, mid2, max;
+		 T min, mid1, mid2, max; /////peut etre change nom
 
 	};
 
@@ -48,7 +48,7 @@ namespace Fuzzy {
 
 	template <class T>
 	T IsTrapeze<T>::evaluate(Core::Expression<T>* e) const {
-		T eval = e->evaluate();
+		T eval = e->evaluate(); /////// pas sûre
 		if (eval < min) { return 0; }
 		else if (eval < mid1) {
 			return (eval - min) / (mid1 - min);

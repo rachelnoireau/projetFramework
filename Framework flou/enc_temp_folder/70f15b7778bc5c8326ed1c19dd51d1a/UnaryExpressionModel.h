@@ -55,6 +55,8 @@ namespace Core {
 
 	template<class T>
 	T UnaryExpressionModel<T>::evaluate() const {
+		/*if (operand == NULL) throw nullptr;
+		return evaluate(operand);*/
 		if (operand == NULL)
 			throw new ExpressionException("operande null");
 

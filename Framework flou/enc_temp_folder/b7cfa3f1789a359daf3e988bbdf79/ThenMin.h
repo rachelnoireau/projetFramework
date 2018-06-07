@@ -11,7 +11,10 @@ namespace Fuzzy {
 		ThenMin() {}
 		virtual ~ThenMin() {}
 		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
-
+		
+		//template <class T>
+		//ThenMin<T>::ThenMin() {
+		//}
 	};
 
 

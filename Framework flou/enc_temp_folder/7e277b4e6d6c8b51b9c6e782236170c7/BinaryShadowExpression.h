@@ -11,7 +11,7 @@ namespace Core {
 	public:
 		BinaryShadowExpression(){}
 		BinaryShadowExpression(BinaryExpression<T>* tar);
-
+		//~BinaryShadowExpression();
 
 		virtual T evaluate(Core::Expression<T>*,Core::Expression<T>*) const;
 		virtual BinaryExpression<T>* getTarget() const;
@@ -24,8 +24,15 @@ namespace Core {
 	template<class T>
 	BinaryShadowExpression<T>::BinaryShadowExpression(BinaryExpression<T>* tar) :
 		target(tar)
-	{}
+	{/*std::cout << "init target" << std::endl;*/}
 
+	/*
+	template<class T>
+	BinaryShadowExpression<T>::~BinaryShadowExpression() 
+	{	
+		std::cout << "ssuuppprrr target" << std::endl;
+		delete target;
+	}*/
 
 
 	template<class T>
