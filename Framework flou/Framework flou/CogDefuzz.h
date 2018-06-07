@@ -38,4 +38,3 @@ namespace Fuzzy
 }
 
 #endif
-

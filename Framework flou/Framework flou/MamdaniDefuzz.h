@@ -41,4 +41,3 @@ namespace Fuzzy
 }
 
 #endif
-
