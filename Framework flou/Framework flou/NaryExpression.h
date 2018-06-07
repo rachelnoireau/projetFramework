@@ -10,7 +10,7 @@ namespace Core
 	public:
 
 		NaryExpression() {};
-		virtual ~NaryExpression() {};
+		~NaryExpression() {};
 
 		virtual T evaluate(vector<const Expression<T>*>*) const = 0;
 	};

@@ -19,7 +19,7 @@ namespace Core {
 		virtual T evaluate(vector<const Expression<T>*> * operands) const;
 
 		void setTarget(NaryExpression<T> * e);
-		NaryExpression<T> * getTarget();
+		NaryExpression<T> * getTarget() const;
 
 	private:
 		NaryExpression<T> * target;
@@ -39,7 +39,7 @@ namespace Core {
 	}
 
 	template<class T>
-	NaryExpression<T>* NaryShadowExpression<T>::getTarget()
+	NaryExpression<T>* NaryShadowExpression<T>::getTarget() const
 	{
 		return target;
 	}

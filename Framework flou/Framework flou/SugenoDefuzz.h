@@ -13,7 +13,7 @@ namespace Fuzzy {
 
 	public:
 		SugenoDefuzz() {};
-		~SugenoDefuzz() {};
+		virtual ~SugenoDefuzz() {};
 
 		virtual T evaluate(std::vector<const Core::Expression<T>*> *operands) const;
 

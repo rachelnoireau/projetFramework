@@ -13,12 +13,13 @@ namespace Fuzzy {
 
 		T getPremiseValue();
 
+
 	private:
 		mutable T premiseValue;
 	};
 
 	template<class T>
-	T SugenoThen<T>::getPremiseValue()
+	T SugenoThen<T>::getPremiseValue() 
 	{
 		return premiseValue;
 	}
@@ -26,7 +27,7 @@ namespace Fuzzy {
 	
 
 	template <class T>
-	T SugenoThen<T>::evaluate(Core::Expression<T>* l, Core::Expression<T>* r) const
+	T SugenoThen<T>::evaluate( Core::Expression<T>* l, Core::Expression<T>* r) const
 	{
 		premiseValue = l->evaluate();
 		return premiseValue * r->evaluate();
