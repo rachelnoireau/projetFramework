@@ -38,7 +38,7 @@ namespace Fuzzy
 		//std::cout << "deno : "<< deno << std::endl;
 		//if (deno == 0) throw exception();
 
-		// (somme des xi*yi) / (somme des yi)
+		// (sum xi*yi) / (sum yi)
 		return std::accumulate(product.begin(), product.end(), sumProduct) / std::accumulate(s.second.begin(), s.second.end(), sumY);
 	}
 }

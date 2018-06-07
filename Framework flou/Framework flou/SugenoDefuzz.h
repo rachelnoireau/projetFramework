@@ -30,11 +30,9 @@ namespace Fuzzy {
 			Core::BinaryExpressionModel<T>*  bem = (Core::BinaryExpressionModel<T>*)(*it);
 			Core::BinaryShadowExpression<T>* bse = (Core::BinaryShadowExpression<T>*) bem->getOperator();
 			SugenoThen<T>* sugThen = (SugenoThen<T>*)bse->getTarget();
-
 			numerator += (*it)->evaluate();
 			denominator += sugThen->getPremiseValue();
 		}
-
 		if (denominator != 0)
 			return numerator / denominator;
 		else
