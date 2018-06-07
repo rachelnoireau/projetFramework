@@ -24,11 +24,6 @@ namespace Core
 		vector<const Expression<T>*>* operandes;
 	};
 
-	/*template<class T>
-	NaryExpressionModel<T>::NaryExpressionModel(NaryExpression<T>* _operateur, typename vector<Expression<T>*> * _operands) :
-		operateur(_operateur), operands(_operands)
-	{
-	}*/
 
 	template<class T>
 	T NaryExpressionModel<T>::evaluate() const
@@ -42,10 +37,7 @@ namespace Core
 	template<class T>
 	T NaryExpressionModel<T>::evaluate(vector<const Expression<T>*> * operands) const
 	{
-		/*if (operateur != NULL)
-			return operateur->evaluate(operands);
-		else
-			throw std::exception();*/
+
 		if (operateur == NULL)
 			throw new ExpressionException("operateur null");
 

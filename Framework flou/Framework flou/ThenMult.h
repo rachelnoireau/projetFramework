@@ -10,10 +10,6 @@ namespace Fuzzy {
 		ThenMult() {}
 		virtual ~ThenMult() {}
 		virtual T evaluate(Core::Expression<T>*, Core::Expression<T>*) const;
-		
-		//template <class T>
-		//ThenMult<T>::ThenMult() {
-		//}
 	};
 
 

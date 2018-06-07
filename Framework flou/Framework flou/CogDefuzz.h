@@ -16,9 +16,14 @@ namespace Fuzzy
 	public:
 		CogDefuzz() {};
 		~CogDefuzz() {};
-	
+		CogDefuzz(const T&, const T&, const T&);
 		virtual T Defuzz(const typename Evaluator<T>::Shape&) const;
 	};
+
+	template <class T>
+	CogDefuzz<T>::CogDefuzz(const T& _min, const T& _max, const T& _step) :
+		MandaniDefuzz(_min, _max, _step)
+	{}
 
 	template <class T>
 	T CogDefuzz<T>::Defuzz(const typename Evaluator<T>::Shape& s) const

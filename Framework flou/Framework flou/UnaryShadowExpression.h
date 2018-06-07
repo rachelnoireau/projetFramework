@@ -26,11 +26,6 @@ namespace Core {
 	UnaryShadowExpression<T>::UnaryShadowExpression(UnaryExpression<T> * tar):
 		target(tar)
 	{}
-	/*
-	template <class T>
-	UnaryShadowExpression<T>::~UnaryShadowExpression() {
-		delete target;
-	}*/
 
 	template <class T>
 	void UnaryShadowExpression<T>::setTarget(UnaryExpression<T>* e){
@@ -43,11 +38,6 @@ namespace Core {
 			return target;
 	}
 
-/*
-	template <class T>
-	UnaryExpression<T>* UnaryShadowExpression<T>::getTarget() const {
-		return target;
-	}*/
 
 	template <class T>
 	T UnaryShadowExpression<T>::evaluate(Core::Expression<T>* o) const {
