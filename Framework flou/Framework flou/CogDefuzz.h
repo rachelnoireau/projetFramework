@@ -23,9 +23,9 @@ namespace Fuzzy {
 		T getMax() const;
 
 	private:
-		T*  step;
-		T*  min;
-		T*  max;
+		T  step;
+		T  min;
+		T  max;
 	};
 
 	template<class T>
