@@ -1,216 +1,3 @@
-/*#pragma once
-#ifndef FUZZYFACTORY_H
-#define FUZZYFACTORY_H
-#include "Expression.h"
-//#include "ExpressionModel.h"
-#include "UnaryShadowExpression.h"
-#include "BinaryShadowExpression.h"
-#include "ExpressionFactory.h"
-#include "UnaryExpressionModel.h"
-#include "BinaryExpressionModel.h"
-#include "Then.h"
-#include "Agg.h"
-#include "CogDefuzz.h"
-#include "Not.h"
-#include "Is.h"
-#include "And.h"
-#include "Or.h"
-#include "SugenoDefuzz.h"
-#include "SugenoConclusion.h"
-
-
-#include <set>
-
-namespace Fuzzy {
-	template <class T>
-	class FuzzyFactory : public Core::ExpressionFactory<T> {
-
-	public:
-
-
-		//FuzzyFactory(UnaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*, BinaryShadowExpression<T>*);
-		FuzzyFactory() {};
-		~FuzzyFactory();
-		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*);
-		//FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*, Core::SugenoDefuzz<T>*, Core:: SugenoConclusion<T>*);
-
-
-		virtual Expression<T>* Hold(Expression<T>*);
-		virtual Expression<T>* NewUnary(UnaryExpression<T>* ope, Expression<T>* o);
-		virtual Expression<T>* NewBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r);
-
-		Core::Expression<T>* NewAnd(Core::Expression<T>* r, Core::Expression<T>* l);
-		Core::Expression<T>* NewOr(Core::Expression<T>* r, Core::Expression<T>* l);
-		Core::Expression<T>* NewThen(Core::Expression<T>* r, Core::Expression<T>* l);
-		Core::Expression<T>* NewAgg(Core::Expression<T>* r, Core::Expression<T>* l);
-		Core::Expression<T>* NewDefuzz(Core::Expression<T>* r, Core::Expression<T>* l);
-		Core::Expression<T>* NewDefuzz(Core::Expression<T>* r, Core::Expression<T>* l, T, T, T);
-		Core::Expression<T>* NewNot(Core::Expression<T>* o);
-		Core::Expression<T>* NewIs( Is<T>* i,Core::Expression<T>*o);
-		Core::Expression<T>* NewSugeno(std::vector<Core::Expression<T>*>*);
-		Core::Expression<T>* NewConclusion(std::vector<Core::Expression<T>*>*);
-		
-		void changeAnd(And<T>* o);
-		void changeOr(Or<T>* o);
-		void changeThen(Then<T>* o);
-		void changeAgg(Agg<T>* o);
-		void changeDefuzz(MamdaniDefuzz<T>* o);
-		void changeNot(Not<T>* o);
-		//void changeIs(Is<T>* o);
-
-	private:
-		//Core::BinaryShadowExpression<T>and, or , then, agg, defuzz;
-		//Core::UnaryShadowExpression<T> not, is;
-		Core::BinaryShadowExpression<T> andVar;
-		Core::BinaryShadowExpression<T> orVar;
-		Core::BinaryShadowExpression<T> then;
-		Core::BinaryShadowExpression<T> agg;
-		Core::BinaryShadowExpression<T> defuzz;
-		Core::UnaryShadowExpression<T> notVar;
-		//Core::UnaryShadowExpression<T>* is;
-
-		std::set<Core::Expression<T>*> memory;
-	};
-	/*
-	template<class T>
-	FuzzyFactory<T>::FuzzyFactory(UnaryShadowExpression<T>* _not, BinaryShadowExpression<T>* _and, BinaryShadowExpression<T>* _or, BinaryShadowExpression<T>* _then, BinaryShadowExpression<T>* _defuzz) :
-	andVar(_and), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
-	{	
-	}
-	
-	
-	template<class T>
-	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or , Then<T>* _then, Agg<T>* _agg, MamdaniDefuzz<T>* _defuzz)//:
-	//andVar(Core::BinaryShadowExpression<T>(_and)), orVar(_or), then(_then), notVar(_not), defuzz(_defuzz)
-	{
-		andVar = new Core::BinaryShadowExpression<T>(_and);
-		orVar= new Core::BinaryShadowExpression<T>(_or);
-		then =new Core::BinaryShadowExpression<T> (_then);
-		agg=new Core::BinaryShadowExpression<T> (_agg);
-		defuzz=new Core::BinaryShadowExpression<T> (_defuzz);
-		notVar=new Core::UnaryShadowExpression<T> (_not);
-
-
-	}
-
-
-	template<class T>
-	FuzzyFactory<T>::~FuzzyFactory() {
-	
-	}
-
-	template<class T>
-	Expression<T>*  FuzzyFactory<T>::Hold(Expression<T>* e) {
-		memory.insert(e);
-		return e;
-	}
-
-
-	template <class T>
-	Expression<T>* FuzzyFactory<T>::NewUnary(UnaryExpression<T>* ope, Expression<T>* o) {
-		return Hold(new UnaryExpressionModel<T>(ope, o));
-	}
-
-	template <class T>
-	Expression<T>* FuzzyFactory<T>::NewBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r) {
-		return Hold(new BinaryExpressionModel<T>(ope, l, r));
-	}
-
-
-	template<class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewAnd(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(&andVar, l, r);
-	}
-	template<class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewOr(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(&orVar, l, r);
-	}
-
-	template<class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewThen(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(&then, l, r);
-	}
-
-	template<class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewAgg(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(&agg, l, r);
-	}
-
-	template<class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewDefuzz(Core::Expression<T>* r, Core::Expression<T>* l) {
-		return NewBinary(&defuzz, l, r);
-	}
-
-	template<class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewDefuzz(Core::Expression<T>* r, Core::Expression<T>* l, T min, T max, T step) {
-		//defuzz.setMin(min);
-		//defuzz.setMax(max);
-		//defuzz.setStep(step);
-		NewBinary(&defuzz, l, r)
-		return NewBinary(&defuzz, l, r); //, min, max, step
-		
-	}
-
-	template<class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewNot(Core::Expression<T>* o) {
-		return NewUnary(&notVar, o);
-	}
-
-	template <class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<Core::Expression<T>*>* operands)
-	{
-		return NewNary(sugeno, operands);
-	}
-
-	template<class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewIs(Is<T>* is, Core::Expression<T>* o) {
-		return NewUnary(is, o);
-	}
-
-	template <class T>
-	Core::Expression<T>* FuzzyFactory<T>::NewConclusion(std::vector<Core::Expression<T>*>* operands)
-	{
-		return NewNary(conclusion, operands);
-	}
-
-
-	template<class T>
-	void FuzzyFactory<T>::changeAnd(And<T>* o) {
-		this->andVar->setTarget(o);
-	}
-
-	template<class T>
-	void FuzzyFactory<T>::changeOr(Or<T>* o) {
-		orVar->setTarget(o);
-	}
-
-	template<class T>
-	void FuzzyFactory<T>::changeThen(Then<T>* o) {
-		then.setTarget(o);
-	}
-
-	template<class T>
-	void FuzzyFactory<T>::changeAgg(Agg<T>* o) {
-		agg.setTarget(o);
-	}
-
-	template<class T>
-	void FuzzyFactory<T>::changeDefuzz(MamdaniDefuzz<T>* o) {
-		defuzz.setTarget(o);
-	}
-
-	template<class T>
-	void FuzzyFactory<T>::changeNot(Not<T>* o) {
-		notVar.setTarget(o);
-	}
-	/*
-	template<class T>
-	void FuzzyFactory<T>::changeIs(Is<T>* o) {
-		is.setTarget(o);
-	}
-}
-#endif*/
-
 #ifndef FUZZYFACTORY_H
 #define FUZZYFACTORY_H
 
@@ -238,8 +25,8 @@ namespace Fuzzy
 	{
 	public:
 		FuzzyFactory() {};
-		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*);
-		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*, SugenoDefuzz<T>*, SugenoConclusion<T>*);
+		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, CogDefuzz<T>*);
+		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, CogDefuzz<T>*, SugenoDefuzz<T>*, SugenoConclusion<T>*);
 		virtual ~FuzzyFactory();
 
 		virtual Expression<T>* newNot(Expression<T>*);
@@ -247,33 +34,33 @@ namespace Fuzzy
 		virtual Expression<T>* newOr(Expression<T>*, Expression<T>*);
 		virtual Expression<T>* newThen(Expression<T>*, Expression<T>*);
 		virtual Expression<T>* newAgg(Expression<T>*, Expression<T>*);
-		virtual Expression<T>* newDefuzz(Expression<T>*, Expression<T>*, const T&, const T&, const T&);
+		virtual Expression<T>* newDefuzz(Expression<T>*, Expression<T>* , const T&, const T&, const T&);
 		virtual Expression<T>* newIs(Is<T>*, Expression<T>*);
 		virtual Expression<T>* newSugeno(std::vector<const Expression<T>*>*);
 		virtual Expression<T>* newConclusion(std::vector<const Expression<T>*>*);
 
-		void changeNot(Not<T>*);
-		void changeAnd(And<T>*);
-		void changeOr(Or<T>*);
-		void changeThen(Then<T>*);
-		void changeAgg(Agg<T>*);
-		void changeDefuzz(MamdaniDefuzz<T>*);
-		void changeSugeno(SugenoDefuzz<T>*);
-		void changeConclusion(SugenoConclusion<T>*);
+		Expression<T>* changeNot(Not<T>*);
+		Expression<T>* changeAnd(And<T>*);
+		Expression<T>* changeOr(Or<T>*);
+		Expression<T>* changeThen(Then<T>*);
+		Expression<T>* changeAgg(Agg<T>*);
+		Expression<T>* changeDefuzz(MamdaniDefuzz<T>*);
+		Expression<T>* changeSugeno(SugenoDefuzz<T>*);
+		Expression<T>* changeConclusion(SugenoConclusion<T>*);
 
 	private:
-		Core::UnaryShadowExpression<T> * notVar;
-		Core::BinaryShadowExpression<T>* andVar;
-		Core::BinaryShadowExpression<T>* orVar ;
-		Core::BinaryShadowExpression<T>* then;
-		Core::BinaryShadowExpression<T>* agg;
-		Core::BinaryShadowExpression<T>* defuzz;
-		Core::NaryShadowExpression<T>*   sugeno;
-		Core::NaryShadowExpression<T>*   conclusion;
+		Core::UnaryShadowExpression<T>  notVar;
+		Core::BinaryShadowExpression<T> andVar;
+		Core::BinaryShadowExpression<T> orVar ;
+		Core::BinaryShadowExpression<T> then;
+		Core::BinaryShadowExpression<T> agg;
+		Core::BinaryShadowExpression<T> defuzz;
+		Core::NaryShadowExpression<T> sugeno;
+		Core::NaryShadowExpression<T>   conclusion;
 	};
 
 	template <class T>
-	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or, Then<T>* _then, Agg<T>* _agg, MamdaniDefuzz<T>* _defuzz)
+	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or, Then<T>* _then, Agg<T>* _agg, CogDefuzz<T>* _defuzz)
 	{
 		notVar = new Core::UnaryShadowExpression<T>(_not);
 		andVar = new Core::BinaryShadowExpression<T>(_and);
@@ -284,8 +71,9 @@ namespace Fuzzy
 	}
 	
 	template <class T>
-	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or, Then<T>* _then, Agg<T>* _agg, MamdaniDefuzz<T>* _defuzz, SugenoDefuzz<T>* _sugeno, SugenoConclusion<T>* _conclusion)
-	{
+	FuzzyFactory<T>::FuzzyFactory(Not<T>* _not, And<T>* _and, Or<T>* _or, Then<T>* _then, Agg<T>* _agg, CogDefuzz<T>* _defuzz, SugenoDefuzz<T>* _sugeno, SugenoConclusion<T>* _conclusion):
+		notVar(_not),andVar(_and),orVar(_or),then(_then),agg(_agg),defuzz(_defuzz),sugeno(_sugeno),conclusion(_conclusion)
+	{	/*
 		notVar = new Core::UnaryShadowExpression<T>(_not);
 		andVar = new Core::BinaryShadowExpression<T>(_and);
 		orVar = new Core::BinaryShadowExpression<T>(_or);
@@ -294,11 +82,12 @@ namespace Fuzzy
 		defuzz = new Core::BinaryShadowExpression<T>(_defuzz);
 		sugeno = new Core::NaryShadowExpression<T>(_sugeno);
 		conclusion = new Core::NaryShadowExpression<T>(_conclusion);
+		*/
 	}
 
 	template <class T>
 	FuzzyFactory<T>::~FuzzyFactory()
-	{
+	{	/*
 		delete notVar;
 		delete andVar;
 		delete orVar ;
@@ -306,48 +95,49 @@ namespace Fuzzy
 		delete agg;
 		delete defuzz;
 		delete sugeno;
-		delete conclusion;
+		delete conclusion;*/
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newNot(Core::Expression<T>* o)
 	{
-		return ExpressionFactory<T>::newUnary(notVar, o);
+		return ExpressionFactory<T>::newUnary(&notVar, o);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newAnd(Core::Expression<T>* l, Core::Expression<T>* r)
 	{
-		return ExpressionFactory<T>::newBinary(andVar, l, r);
+		return ExpressionFactory<T>::newBinary(&andVar, l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newOr(Core::Expression<T>* l, Core::Expression<T>* r)
 	{
-		return ExpressionFactory<T>::newBinary(orVar , l, r);
+		return ExpressionFactory<T>::newBinary(&orVar , l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newThen(Core::Expression<T>* l, Core::Expression<T>* r)
 	{
-		return ExpressionFactory<T>::newBinary(then, l, r);
+		return ExpressionFactory<T>::newBinary(&then, l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newAgg(Core::Expression<T>* l, Core::Expression<T>* r)
 	{
-		return ExpressionFactory<T>::newBinary(agg, l, r);
+		return ExpressionFactory<T>::newBinary(&agg, l, r);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newDefuzz(Core::Expression<T>* l, Core::Expression<T>* r, const T& min, const T& max, const T& step)
-	{
+	{	
+		/*
 		CogDefuzz<T>* target = (CogDefuzz<T>*) defuzz->getTarget();
 		target->setMin(min);
 		target->setMax(max);
 		target->setStep(step);
-
-		return ExpressionFactory<T>::newBinary(defuzz, l, r);
+		*/
+		return ExpressionFactory<T>::newBinary(&defuzz, l, r);
 	}
 
 	template <class T>
@@ -359,61 +149,69 @@ namespace Fuzzy
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newSugeno(std::vector<const Core::Expression<T>*>* operands)
 	{
-		return ExpressionFactory<T>::newNary(sugeno, operands);
+		return ExpressionFactory<T>::newNary(&sugeno, operands);
 	}
 
 	template <class T>
 	Core::Expression<T>* FuzzyFactory<T>::newConclusion(std::vector<const Core::Expression<T>*>* operands)
 	{
-		return ExpressionFactory<T>::newNary(conclusion, operands);
+		return ExpressionFactory<T>::newNary(&conclusion, operands);
 	}
 
 	template <class T>
-	void FuzzyFactory<T>::changeNot(Not<T>* _not)
+	Expression<T>* FuzzyFactory<T>::changeNot(Not<T>* _not)
 	{
 		notVar->setTarget(_not);
+		return this;
 	}
 
 	template <class T>
-	void FuzzyFactory<T>::changeAnd(And<T>* _and)
+	Expression<T>* FuzzyFactory<T>::changeAnd(And<T>* _and)
 	{
 		andVar->setTarget(_and);
+		return this;
 	}
 
 	template <class T>
-	void FuzzyFactory<T>::changeOr(Or<T>* _or)
+	Expression<T>* FuzzyFactory<T>::changeOr(Or<T>* _or)
 	{
 		orVar ->setTarget(_or);
+		return this;
 	}
 
 	template <class T>
-	void FuzzyFactory<T>::changeThen(Then<T>* _then)
+	Expression<T>* FuzzyFactory<T>::changeThen(Then<T>* _then)
 	{
 		then->setTarget(_then);
+		return this;
 	}
 
 	template <class T>
-	void FuzzyFactory<T>::changeAgg(Agg<T>* _agg)
+	Expression<T>* FuzzyFactory<T>::changeAgg(Agg<T>* _agg)
 	{
 		agg->setTarget(_agg);
+		return this
 	}
 
 	template <class T>
-	void FuzzyFactory<T>::changeDefuzz(MamdaniDefuzz<T>* _defuzz)
+	Expression<T>* FuzzyFactory<T>::changeDefuzz(MamdaniDefuzz<T>* _defuzz)
 	{
 		defuzz->setTarget(_defuzz);
+		return this
 	}
 
 	template <class T>
-	void FuzzyFactory<T>::changeSugeno(SugenoDefuzz<T>* _sugeno)
+	Expression<T>* FuzzyFactory<T>::changeSugeno(SugenoDefuzz<T>* _sugeno)
 	{
 		sugeno->setTarget(_sugeno);
+		return this
 	}
 
 	template <class T>
-	void FuzzyFactory<T>::changeConclusion(SugenoConclusion<T>* _conclusion)
+	Expression<T>* FuzzyFactory<T>::changeConclusion(SugenoConclusion<T>* _conclusion)
 	{
 		conclusion->setTarget(_conclusion);
+		return this
 	}
 }
 
