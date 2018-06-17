@@ -18,9 +18,10 @@ namespace Core
 		ExpressionFactory() {};
 		virtual ~ExpressionFactory();
 
-		UnaryExpressionModel<T>* newUnary(UnaryExpression<T>*, Expression<T>*);
-		BinaryExpressionModel<T>* newBinary(BinaryExpression<T>*, Expression<T>*, Expression<T>*);
-		NaryExpressionModel<T>* newNary(NaryExpression<T>*, std::vector<const Expression<T>*>*);
+		Expression<T>* newUnary(UnaryExpression<T>*, Expression<T>*);
+		Expression<T>* newBinary(BinaryExpression<T>*, Expression<T>*, Expression<T>*);
+		Expression<T>* newNary(NaryExpression<T>*, std::vector<const Expression<T>*>*);
+		
 		Expression<T>* hold(Expression<T>*);
 
 	private:
@@ -35,21 +36,21 @@ namespace Core
 	}
 
 	template <class T>
-	UnaryExpressionModel<T>* ExpressionFactory<T>::newUnary(UnaryExpression<T>* ope, Expression<T>* o)
+	Expression<T>* ExpressionFactory<T>::newUnary(UnaryExpression<T>* ope, Expression<T>* o)
 	{
-		return (UnaryExpressionModel<T>*) hold(new UnaryExpressionModel<T>(ope, o));
+		return hold(new UnaryExpressionModel<T>(ope, o));
 	}
 
 	template <class T>
-	BinaryExpressionModel<T>* ExpressionFactory<T>::newBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r)
+	Expression<T>* ExpressionFactory<T>::newBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r)
 	{
-		return (BinaryExpressionModel<T>*) hold(new BinaryExpressionModel<T>(ope, l, r));
+		return hold(new BinaryExpressionModel<T>(ope, l, r));
 	}
 
 	template <class T>
-	NaryExpressionModel<T>* ExpressionFactory<T>::newNary(NaryExpression<T>* ope, std::vector<const Expression<T>*>* operands)
+	Expression<T>* ExpressionFactory<T>::newNary(NaryExpression<T>* ope, std::vector<const Expression<T>*>* operands)
 	{
-		return (NaryExpressionModel<T>*) hold(new NaryExpressionModel<T>(ope, operands));
+		return hold(new NaryExpressionModel<T>(ope, operands));
 	}
 
 	template <class T>
